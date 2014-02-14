@@ -5,7 +5,7 @@ var CharacterCreateView = Backbone.View.extend ({
   template: templates.CharacterCreateView,
 
   events: {
-  	"keyup #characterNewName":"submitName",
+  	"keyup #characterNewName":"checkKeyUp",
   	"click #createCharacter":"createCharacter",
   	"click #cancelCreateCharacter":"cancelCreateCharacter"
   },
@@ -20,6 +20,8 @@ var CharacterCreateView = Backbone.View.extend ({
     
     return this;
 	},
+
+	//2DO: add keyup check for escape to cancel
 
   cancelCreateCharacter: function() {
   	this.vent.trigger("selectCharacterCancelled");//trigger our event called cancelCreateCharacter (vent._events.cancelCreateCharacter[0]) with this model as the context. 
@@ -40,9 +42,12 @@ var CharacterCreateView = Backbone.View.extend ({
 		}
 	},
 
-	submitName: function(keyupEvent) {
-		if(keyupEvent.which == 13) {
+	checkKeyUp: function(keyupEvent) {
+		if(keyupEvent.keyCode == 13) {
 			$('#createCharacter').click();
+		}
+		if(keyupEvent.keyCode == 27) {
+			$('#cancelCreateCharacter').click();
 		}
 	}
 	

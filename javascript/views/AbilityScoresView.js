@@ -5,7 +5,7 @@ var AbilityScoresView = Backbone.View.extend({
 
 	events: {
 		"click #randomizeStats":"randomizeStats",
-		"click .abilityScoresTitle":"toggleShowHide"
+		"click #abilityScoresTitle":"toggleShowHide"
 	},
 
 	initialize: function(options) {
@@ -36,7 +36,7 @@ var AbilityScoresView = Backbone.View.extend({
 	},
 
 	toggleShowHide: function() {
-		toggleAllExcept("#abilityScoresContainer",".abilityScoresTitle,.collapse",this.collapsed);
+		toggleAllExcept("#abilityScoresContainer","#abilityScoresTitle",this.collapsed);
 		 if (this.collapsed == true) {
 		 	this.collapsed = false;
 		 	console.log(this.$el);

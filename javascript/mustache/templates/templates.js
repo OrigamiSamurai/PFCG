@@ -10,8 +10,10 @@ templates.CollapseOpen = [
 
 
 templates.AbilityScoresView = [
-	"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
-	"<span class=\"abilityScoresTitle\">Ability Scores</span>",
+	"<div id=\"abilityScoresTitle\">",	
+		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
+		"Ability Scores",
+	"</div>",
 	"<div id=\"abilityScoreRowsContainer\"></div>",
 	"<button id=\"randomizeStats\">Randomize Stats</button>"
 ].join("");
@@ -45,6 +47,13 @@ templates.CharacterSelectView = [
 	"<button id=\"selectExistingCharacter\">Select Existing</button>",
 	"<button id=\"changeCharacter\">Change Character</button>"
 ].join("");
+
+
+//2D0: change character name to text field, disabled by default
+//2DO: add edit "link" next to next
+//2DO: add button to change name
+//2DO: wire change name button, including check against existing characters
+//2DO: add keyup check for enter to change name
 
 templates.CharacterView = [
 	"Name: <span class=\"characterName\">{{name}}</span>"
