@@ -10,3 +10,13 @@ function rollxdy(x,y){
  }
  return sum; 
 }
+
+//hide/show everything in given div EXCEPT given jquery selector
+function toggleAllExcept(parentElemJquery,childElemJquery,bool) {
+	if (bool == true) {
+		$(parentElemJquery).children().not(childElemJquery).show();
+	}
+	else if (bool == false) {
+		$(parentElemJquery).children().not(childElemJquery).hide();
+	};
+}

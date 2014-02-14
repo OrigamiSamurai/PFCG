@@ -1,6 +1,16 @@
 var templates = [];
 
+templates.CollapseClosed = [
+	"&nbsp;[+]&nbsp;"
+].join("");
+
+templates.CollapseOpen = [
+	"&nbsp;[-]&nbsp;"
+].join("");
+
+
 templates.AbilityScoresView = [
+	"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
 	"<span class=\"abilityScoresTitle\">Ability Scores</span>",
 	"<div id=\"abilityScoreRowsContainer\"></div>",
 	"<button id=\"randomizeStats\">Randomize Stats</button>"

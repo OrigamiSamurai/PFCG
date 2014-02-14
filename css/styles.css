@@ -4,7 +4,7 @@ div {
 	margin:2px;
 }
 
-span.characterName, span.abilityScoresTitle {
+span.characterName, span.collapse {
 	font-weight:bold;
 }
 

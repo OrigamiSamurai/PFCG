@@ -4,10 +4,12 @@ var AbilityScoresView = Backbone.View.extend({
 	template: templates.AbilityScoresView,
 
 	events: {
-		"click #randomizeStats":"randomizeStats"
+		"click #randomizeStats":"randomizeStats",
+		"click .abilityScoresTitle":"toggleShowHide"
 	},
 
 	initialize: function(options) {
+		this.collapsed = false;
 		this.render();
 	},
 
@@ -31,5 +33,18 @@ var AbilityScoresView = Backbone.View.extend({
 		for (var i=0;i<abilityScoreNames.length;i++) {
 			this.collection.findWhere({name:abilityScoreNames[i]}).set({value:rollxdy(3,6)});
 		};
+	},
+
+	toggleShowHide: function() {
+		toggleAllExcept("#abilityScoresContainer",".abilityScoresTitle,.collapse",this.collapsed);
+		 if (this.collapsed == true) {
+		 	this.collapsed = false;
+		 	console.log(this.$el);
+		 	this.$el.find('.collapse').html(Mustache.to_html(templates.CollapseOpen));
+		 }
+		 else if (this.collapsed == false) {
+		 	this.collapsed = true;
+		 	this.$el.find('.collapse').html(Mustache.to_html(templates.CollapseClosed));
+		 };
 	}
 });
