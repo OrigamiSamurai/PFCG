@@ -1,0 +1,12 @@
+div {
+	border-style:solid;
+	border-width:1px;
+}
+
+span.characterName, span.abilityScoresTitle {
+	font-weight:bold;
+}
+
+button#changeCharacter {
+	display:none;
+}

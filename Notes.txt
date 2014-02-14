@@ -1,0 +1,82 @@
+Notes:
+
+Publish/Subscribe model for custom events to trigger functions with specific context:
+
+  _.bindAll explanation:
+  	uses UNDERSCORE apply - essentially this sets the value of "this" when a function is invoked, when the function has "this" in it
+  	example: 
+  		var func = stupid() {
+  			alert(this+"is stupid")
+  		}
+  		
+  		func() returns '[object window] is stupid'
+  		func.apply('derp') returns 'derp is stupid' because 'derp' is set as context for 'this'
+
+  		this solves the problem of "this" referring to the context from which the object was called (if it's not the object itself)
+
+		uses UNDERSCORE bind - essentially this takes a given function and an object to use as "this" context and returns a new function
+		example:
+
+			function reader(text) {
+				this.text = text;
+				this.read = function () {
+					alert(text);
+				}
+			}
+
+			var myreader = new reader("some text");
+			myreader.read() // returns undefined, since window.text is not defined
+			var myreaderReadBound = _.bind(myreader.read,myreader) //this is returning a new function that uses myreader as the context for the function myreader.read
+			myreaderReadBound() //returns "some text"
+
+			NOTE: NEW FUNCTION RETURNED, and the old function is not altered
+	
+		Using bindAll, we actually CHANGE the given function so that it ALWAYS uses the given context as "this"
+		example:
+
+			function reader(text) {
+				this.text = text;
+				this.read = function () {
+					alert(text);
+				}
+			}
+
+			var myreader = new reader("some text");
+			myreader.read() // returns undefined, since window.text is not defined
+			_.bindAll(myreader, 'read'); //this goes through and overrides the existing attribute/function to use the specified object as the context
+			myreader.read() // NOW RETURNS "some text"
+
+Sample:
+
+var vent = _.extend({}, Backbone.Events); //creates copy of backbone events framework
+
+var ChildView = Backbone.View.extend({
+	initialize: function(options) {
+		this.vent = options.vent; //pull in the vent event framework so we can use it... in other functions here
+	},
+
+	myfunction: function() {
+		alert("I am doing something in the ChildView context.");
+		this.vent.trigger("triggeredFunction",this.model); //triggers our "triggeredFunction" event that will then fire off the function we bound in the ParentView
+	}
+})
+
+var ParentView = Backbone.View.extend({
+	initialize: function(options) {
+		_.bindAll(this, "triggeredFunction");//sets context for this view's method "myfunction" to this view
+		options.vent.bind("triggeredFunction", this.triggeredFunction);//creates an event in vent._events that will fire this.myfunction (which now uses this view as context) when triggered
+	},
+
+	triggeredFunction: function() {
+		alert("I am doing something that requires the ParentView context.");
+	}
+});
+
+var parentView = new ParentView({model:somemodel, vent:vent}); //create the parent view
+
+var childView = new ChildView({vent:vent}); //create the child view, passing in the vent event framework
+
+childView.myfunction()//This will alert the ChildView context comment, then trigger the event in our custom framework, which will fire off the triggeredFunction with ParentView as the context
+
+
+
