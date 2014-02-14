@@ -3,6 +3,10 @@ var AbilityScoresView = Backbone.View.extend({
 
 	template: templates.AbilityScoresView,
 
+	events: {
+		"click #randomizeStats":"randomizeStats"
+	},
+
 	initialize: function(options) {
 		this.render();
 	},
@@ -10,16 +14,22 @@ var AbilityScoresView = Backbone.View.extend({
 	render: function() {
 		this.$el.html(Mustache.to_html(this.template));
 
-		//2DO:create ability score views
-		
+		for (var i=0;i<abilityScoreNames.length;i++) {
+			var abilityScoreView = new AbilityScoreView({
+				model:this.collection.findWhere({
+					name:abilityScoreNames[i]
+				}),
+				vent: vent
+			});
+			this.$el.find('div#abilityScoreRowsContainer').append(abilityScoreView.el);
+		}
+
     return this;
 	},
 
-	addStat: function(statAdded) {
-		//check name of added stat. If it's one of the ability scores, display here
-		if ($.inArray(statAdded.attributes.name,abilityScoreNames) != -1) {
-			console.log("THIS STAT WAS AN ABILITY SCORE");
+	randomizeStats: function() {
+		for (var i=0;i<abilityScoreNames.length;i++) {
+			this.collection.findWhere({name:abilityScoreNames[i]}).set({value:rollxdy(3,6)});
 		};
-		console.log(statAdded);
 	}
-})
+});

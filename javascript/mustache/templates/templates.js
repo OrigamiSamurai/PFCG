@@ -2,8 +2,12 @@ var templates = [];
 
 templates.AbilityScoresView = [
 	"<span class=\"abilityScoresTitle\">Ability Scores</span>",
-	"<div>This would be an ability score row</div>",
+	"<div id=\"abilityScoreRowsContainer\"></div>",
 	"<button id=\"randomizeStats\">Randomize Stats</button>"
+].join("");
+
+templates.AbilityScoreView = [
+	"{{name}}: {{value}}",
 ].join("");
 
 templates.CharacterCreateView = [
