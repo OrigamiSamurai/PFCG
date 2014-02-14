@@ -5,6 +5,9 @@ var Stat = Backbone.Model.extend({
 		levelGained: 0,
 		description: "",
 		sourceName: "",
-		affectsStats: new Array()
+		affectsStats: new Array(), //2DO convert affectedStats into collection...
+		total: function() {
+			//go get sums of all effecting stats recursively
+		}
 	}
 });

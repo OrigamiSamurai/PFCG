@@ -28,17 +28,9 @@ var CharacterCreateView = Backbone.View.extend ({
 
 	createCharacter: function() {
 		var newCharName = $('#characterNewName').val();
-		
-		var baseStats = new StatCollection();
-		for (var i=0;i<abilityScoreNames.length;i++){
-			baseStats.add(new Stat({name:abilityScoreNames[i],value:10}));
-		};
 
 		if (newCharName && newCharName != "") {
-			var newChar = new Character({
-				name: newCharName,
-				stats: baseStats
-			})
+			var newChar = createBaseCharacter(newCharName);
 			this.collection.add(newChar);
 			this.vent.trigger("characterSelected",newChar);//triggers an event and passes in newCharName as an argument. Additional arguments can be passed in if necessary
 			this.remove();		
