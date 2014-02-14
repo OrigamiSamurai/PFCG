@@ -50,6 +50,7 @@ var CharacterSelectView = Backbone.View.extend ({
 
   selectCharacterCancelled: function(){
     this.toggleButtons([true,true,false]);
+    this.$el.find("#createNewCharacter").focus();
   },
 
   selectCharacter: function(selectedChar) {
@@ -60,8 +61,9 @@ var CharacterSelectView = Backbone.View.extend ({
 
   selectExistingCharacter: function() {
     var characterSelectExistingView = new CharacterSelectExistingView({collection:this.collection, vent:vent});
-    this.$el.append(characterSelectExistingView.el);
     this.toggleButtons([false,false,false]);
+    this.$el.append(characterSelectExistingView.el);
+    $('select#character').focus();
   },
   
   toggleButtons: function(flags) {

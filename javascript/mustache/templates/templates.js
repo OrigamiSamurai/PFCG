@@ -10,12 +10,12 @@ templates.CollapseOpen = [
 
 
 templates.AbilityScoresView = [
-	"<div id=\"abilityScoresTitle\">",	
+	"<div id=\"abilityScoresTitle\" class=\"nocollapse\">",	
 		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
 		"Ability Scores",
 	"</div>",
 	"<div id=\"abilityScoreRowsContainer\"></div>",
-	"<button id=\"randomizeStats\">Randomize Stats</button>"
+	"<button id=\"randomizeStats3d6\">Randomize Stats 3d6</button>"
 ].join("");
 
 templates.AbilityScoreView = [

@@ -28,6 +28,15 @@ var CharacterCreateView = Backbone.View.extend ({
   	this.remove();
   },
 
+  checkKeyUp: function(keyupEvent) {
+		if(keyupEvent.keyCode == 13) {
+			$('#createCharacter').click();
+		}
+		if(keyupEvent.keyCode == 27) {
+			$('#cancelCreateCharacter').click();
+		}
+	},
+
 	createCharacter: function() {
 		var newCharName = $('#characterNewName').val();
 
@@ -39,15 +48,6 @@ var CharacterCreateView = Backbone.View.extend ({
 		}
 		else {
 			alert("There was an error trying to create character with name: "+newCharName);
-		}
-	},
-
-	checkKeyUp: function(keyupEvent) {
-		if(keyupEvent.keyCode == 13) {
-			$('#createCharacter').click();
-		}
-		if(keyupEvent.keyCode == 27) {
-			$('#cancelCreateCharacter').click();
 		}
 	}
 	

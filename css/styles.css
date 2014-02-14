@@ -8,6 +8,11 @@ span.characterName, span.collapse {
 	font-weight:bold;
 }
 
+div#abilityScoresTitle {
+	cursor:default;
+	color:#0000FF;
+} 
+
 button#changeCharacter {
 	display:none;
 }

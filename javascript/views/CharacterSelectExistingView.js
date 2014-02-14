@@ -6,7 +6,9 @@ var CharacterSelectExistingView = Backbone.View.extend ({
 
 	events: {
 		"click #selectCharacter":"selectCharacter",
-		"click #cancelSelectExistingCharacter":"cancelSelectExistingCharacter"
+		"click #cancelSelectExistingCharacter":"cancelSelectExistingCharacter",
+		"keyup select#character":"checkKey",
+		"keypress select#character":"checkKey",
 	},
 
 	initialize: function(options) { //on initialization, the vent object gets passed in
@@ -23,11 +25,6 @@ var CharacterSelectExistingView = Backbone.View.extend ({
     return this;
 	},
 
-	cancelSelectExistingCharacter: function() {
-  	this.vent.trigger("selectCharacterCancelled");//trigger our event called cancelCreateCharacter (vent._events.cancelCreateCharacter[0]) with this model as the context. 
-  	this.remove();
-  },
-
 	addOption: function(option) {
     var optionView = new CharacterSelectOptionView ({
       model: option,
@@ -35,6 +32,21 @@ var CharacterSelectExistingView = Backbone.View.extend ({
     });
     this.$el.find("select#character").append(optionView.render());
   },
+
+	cancelSelectExistingCharacter: function() {
+  	this.vent.trigger("selectCharacterCancelled");//trigger our event called cancelCreateCharacter (vent._events.cancelCreateCharacter[0]) with this model as the context. 
+  	this.remove();
+  },
+
+  //hacky solution is to check both keypress and keyup for chrome, since enter doesn't fire keyup, and escape doesn't fire keypress
+	checkKey: function(keyEvent) {
+		if(keyEvent.keyCode == 13) {
+			$('button#selectCharacter').click();
+		}
+		if(keyEvent.keyCode == 27) {
+			$('#cancelSelectExistingCharacter').click();
+		}
+	},
 
   selectCharacter: function() {
   	var existingCharName = $('select#character').val();

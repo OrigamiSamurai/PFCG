@@ -4,7 +4,7 @@ var AbilityScoresView = Backbone.View.extend({
 	template: templates.AbilityScoresView,
 
 	events: {
-		"click #randomizeStats":"randomizeStats",
+		"click #randomizeStats3d6":"randomizeStats3d6",
 		"click #abilityScoresTitle":"toggleShowHide"
 	},
 
@@ -29,14 +29,15 @@ var AbilityScoresView = Backbone.View.extend({
     return this;
 	},
 
-	randomizeStats: function() {
+	randomizeStats3d6: function() {
 		for (var i=0;i<abilityScoreNames.length;i++) {
 			this.collection.findWhere({name:abilityScoreNames[i]}).set({value:rollxdy(3,6)});
 		};
 	},
 
+	//2DO: modify HTML to use .nocollapse class
 	toggleShowHide: function() {
-		toggleAllExcept("#abilityScoresContainer","#abilityScoresTitle",this.collapsed);
+		toggleAllExcept("#abilityScoresContainer",".nocollapse",this.collapsed);
 		 if (this.collapsed == true) {
 		 	this.collapsed = false;
 		 	console.log(this.$el);
