@@ -14,6 +14,8 @@ var CharacterView = Backbone.View.extend({
 		this.$el.html(Mustache.to_html(this.template,this.model.attributes));
 		var abilityScoresView = new AbilityScoresView({collection:this.model.attributes.stats, vent:vent});
 		this.$el.append(abilityScoresView.el);
+		var raceSelectView = new RaceSelectView({model:this.model,vent:vent});
+		this.$el.append(raceSelectView.el);
 		$('body').append(this.$el);
     return this;
 	},

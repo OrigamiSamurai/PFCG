@@ -19,7 +19,7 @@ templates.AbilityScoresView = [
 ].join("");
 
 templates.AbilityScoreView = [
-	"{{name}}: {{value}}",
+	"{{name}}: {{value}}"
 ].join("");
 
 templates.CharacterCreateView = [
@@ -57,4 +57,17 @@ templates.CharacterSelectView = [
 
 templates.CharacterView = [
 	"Name: <span class=\"characterName\">{{name}}</span>"
+].join("");
+
+templates.RaceOptionView = [
+	"<label>",
+		"<input type=\"radio\" name=\"race\" value=\"{{description}}\">",
+			"{{description}}",
+		"</input>",
+	"</label>"
+].join("");
+
+templates.RaceSelectView = [
+	"Race: ",
+	"<div id=\"racesContainer\"></div>"
 ].join("");

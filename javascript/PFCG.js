@@ -1,4 +1,5 @@
 var abilityScoreNames = ["Strength","Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
+var races = ["Human","Dwarf","Elf","Gnome","Half-Elf","Half-Orc","Halfling"];
 
 var vent = _.extend({}, Backbone.Events); //uses Underscore.js to create a copy of the backbone events object/functionality. We use this pass custom events/handlers
 
