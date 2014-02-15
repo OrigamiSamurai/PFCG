@@ -35,7 +35,6 @@ var AbilityScoresView = Backbone.View.extend({
 		};
 	},
 
-	//2DO: modify HTML to use .nocollapse class
 	toggleShowHide: function() {
 		toggleAllExcept("#abilityScoresContainer",".nocollapse",this.collapsed);
 		 if (this.collapsed == true) {

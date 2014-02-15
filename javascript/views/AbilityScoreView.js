@@ -4,13 +4,14 @@ var AbilityScoreView = Backbone.View.extend({
 	template: templates.AbilityScoreView,
 
 	initialize: function(options) {
-		this.listenTo(this.model,'change',this.render);
 		this.$el.attr("id", this.model.attributes.name.toLowerCase()+"ScoreContainer");
 		this.render();
 	},
 
 	render: function() {
 		this.$el.html(Mustache.to_html(this.template,this.model.attributes));
+		var statValueView = new StatValueView({model:this.model});
+		this.$el.append(statValueView.el);
     return this;
 	}
 });

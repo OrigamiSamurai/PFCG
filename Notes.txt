@@ -80,3 +80,64 @@ childView.myfunction()//This will alert the ChildView context comment, then trig
 
 
 
+
+
+
+/*totalValue strategy:
+	each stat has a totalValue attribute
+	when getting the value to DISPLAY, grab the totalValue
+		to do this, the totalValue needs to be kept updated
+		it will be the job of the statCollection to manage this
+			stat added -> trigger recalc
+			stat removed -> trigger recalc
+			stat value changed -> trigger recalc
+
+			Add stat -> affects A & B -> trigger recalc of A & B, then subsequent stats
+			Remove stat -> affected C & D -> trigger recalc of, self, C & D, then subsequent stats
+			Stat value changed -> affects E & F -> trigger recalc of self, E, and F
+
+			totalValue is ONLY used for display, not calculation
+
+			RECALC
+				A->B&C
+				D->A
+
+				Look for value of B:
+
+				1) CHECK FOR AFFECTS: (B) - CHECKS RUN: (), VALUES: (B)
+						See A
+				2) CHECK FOR AFFECTS: (A,B) - CHECKS RUN: (B), VALUES: (A,B)
+						See D
+				3) CHECK FOR AFFECTS: (A,B,D) - CHECKS RUN: (A,B), VALUES: (A,B,D)
+						See none (D has no effects)
+				4) return sum (a,b,d)
+
+
+
+
+				B->A
+				C->A
+				D->B,C
+
+				Look for value of A:
+
+				1) CHECK FOR AFFECTED/FOUND: (A) - CHECKS RUN: ()
+						See B,C
+				2) CHECK FOR AFFECTED/FOUND: (A,B,C) - CHECKS RUN: (A)
+						See D
+				3) CHECK FOR AFFECTS/FOUND: (A,B,C,D) - CHECKS RUN: (A,B,C)
+						See no new
+				4) return sum (a,b,d)
+				
+
+
+
+
+
+
+				Recalc B ... check for any references to B and get A
+					B,A affect B
+				Run check for B,A... get B,A,D...
+					B,A,D affect B
+				Run check for B,A,D
+*/

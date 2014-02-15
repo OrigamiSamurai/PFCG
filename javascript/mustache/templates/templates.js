@@ -10,7 +10,7 @@ templates.CollapseOpen = [
 
 
 templates.AbilityScoresView = [
-	"<div id=\"abilityScoresTitle\" class=\"nocollapse\">",	
+	"<div id=\"abilityScoresTitle\" class=\"nocollapse title\">",	
 		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
 		"Ability Scores",
 	"</div>",
@@ -19,7 +19,7 @@ templates.AbilityScoresView = [
 ].join("");
 
 templates.AbilityScoreView = [
-	"{{name}}: {{value}}"
+	"{{name}}: "
 ].join("");
 
 templates.CharacterCreateView = [
@@ -68,6 +68,13 @@ templates.RaceOptionView = [
 ].join("");
 
 templates.RaceSelectView = [
-	"Race: ",
+	"<div id=\"racesTitle\" class=\"nocollapse title\">",	
+		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
+		"<span id=\"racePreview\">Race: </span>",
+	"</div>",
 	"<div id=\"racesContainer\"></div>"
+].join("");
+
+templates.StatValueView = [
+	"{{totalValue}}"
 ].join("");

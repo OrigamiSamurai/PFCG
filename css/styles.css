@@ -8,7 +8,7 @@ span.characterName, span.collapse {
 	font-weight:bold;
 }
 
-div#abilityScoresTitle {
+div .title {
 	cursor:default;
 	color:#0000FF;
 } 
