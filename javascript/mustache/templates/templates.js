@@ -15,7 +15,7 @@ templates.AbilityScoresView = [
 		"Ability Scores",
 	"</div>",
 	"<div id=\"abilityScoreRowsContainer\"></div>",
-	"<button id=\"randomizeStats3d6\">Randomize Stats 3d6</button>"
+	"<button id=\"randomizeStats3d6\">Randomize Stats (Straight 3d6)</button>"
 ].join("");
 
 templates.AbilityScoreView = [
@@ -76,5 +76,6 @@ templates.RaceSelectView = [
 ].join("");
 
 templates.StatValueView = [
-	"{{totalValue}}"
+	"{{totalValue}}",
+	"<div class=\"toolTip\">This is some tooltip content</div>"
 ].join("");

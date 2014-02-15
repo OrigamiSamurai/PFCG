@@ -10,6 +10,14 @@ var StatValueView = Backbone.View.extend({
 		this.listenTo(this.model,'change',this.render);
 		this.vent = options.vent;
 		this.render();
+		this.$el.hover(
+			function(){
+				$(this).children('.toolTip').show();
+			},
+			function(){
+				$(this).children('.toolTip').hide();
+			}
+		)
 	},
 
 	render: function() {

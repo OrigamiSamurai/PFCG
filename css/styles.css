@@ -4,7 +4,7 @@ div {
 	margin:2px;
 }
 
-span.characterName, span.collapse {
+span.collapse {
 	font-weight:bold;
 }
 
@@ -12,6 +12,19 @@ div .title {
 	cursor:default;
 	color:#0000FF;
 } 
+
+span.statValue {
+	cursor:default;
+	position: relative;
+}
+
+div.toolTip {
+	background-color: #EEEEEE;
+	position: absolute;
+	display: none;
+	z-index: 100;
+	width: 200px;
+}
 
 button#changeCharacter {
 	display:none;
