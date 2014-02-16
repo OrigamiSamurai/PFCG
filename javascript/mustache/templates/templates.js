@@ -59,6 +59,25 @@ templates.CharacterView = [
 	"Name: <span class=\"characterName\">{{name}}</span>"
 ].join("");
 
+templates.DebugBarView = [
+	"<div id=\"debugBarTitle\" class=\"nocollapse title\">",	
+		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
+		"Debug Bar",
+	"</div>",
+	"<div id=\"debugStatsContainer\">Stats</div>",
+	"<div id=\"debugSourcesContainer\">Sources</div>"
+].join("");
+
+templates.DebugSourceView = [
+	"\"{{name}}\": Level Gained: {{levelGained}}, Description: {{description}} ",
+	"<button class=\"logModel\">Log to console</button>"
+].join("");
+
+templates.DebugStatView = [
+	"\"{{name}}\": Value: {{value}}, Level Gained: {{levelGained}}, Description: {{description}} ",
+	"<button class=\"logModel\">Log to console</button>"
+].join("");
+
 templates.RaceOptionView = [
 	"<label>",
 		"<input type=\"radio\" name=\"race\" value=\"{{description}}\">",
@@ -76,6 +95,6 @@ templates.RaceSelectView = [
 ].join("");
 
 templates.StatValueView = [
-	"{{totalValue}}",
+	"{{totalValue}} <img src=\"images/magnifying_glass.jpg\" alt=\"magnifying glass\"/>",
 	"<div class=\"toolTip\">This is some tooltip content</div>"
 ].join("");

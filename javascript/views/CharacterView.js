@@ -16,6 +16,9 @@ var CharacterView = Backbone.View.extend({
 		this.$el.append(abilityScoresView.el);
 		var raceSelectView = new RaceSelectView({model:this.model,vent:vent});
 		this.$el.append(raceSelectView.el);
+		
+		var debugBarView = new DebugBarView({model:this.model,vent:vent});
+		this.$el.append(debugBarView.el)
 		$('body').append(this.$el);
     return this;
 	},

@@ -68,9 +68,13 @@ var RaceSelectView = Backbone.View.extend ({
   selectRace: function(raceSource) {
   	//clear existing racial stats/sources
   	var racialStats = this.model.attributes.stats.where({source:this.model.attributes.sources.findWhere({name:"Race"})})//get racial stats
-  	this.model.attributes.stats.remove(racialStats);
-  	var racialSources = this.model.attributes.sources.where({name:"Race"})//get racial stats
-  	this.model.attributes.sources.remove(racialSources);
+  	racialStats.forEach(function(stat){
+      stat.destroy();
+    })
+  	var racialSources = this.model.attributes.sources.where({name:"Race"});
+    racialSources.forEach(function(source){
+      source.destroy();
+    })
 
     //add new source and stats, then update preview text
   	this.model.attributes.sources.add(raceSource);

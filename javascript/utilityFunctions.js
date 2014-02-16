@@ -38,7 +38,8 @@ function createBaseCharacter(characterName) {
 	var baseSources = new SourceCollection(new Source({name:"Character Creation",levelGained:0}));
 	var testChar = new Character({
 		name: characterName,
-		stats: baseStats
+		stats: baseStats,
+		sources: baseSources
 	});
 	
 	//HAD TO MIGRATE THIS OUT OF STATCOLLECTION SINCE EVERY STAT CREATES A STAT COLLECTION....
