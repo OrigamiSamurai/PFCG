@@ -12,7 +12,7 @@ var AbilityScoreView = Backbone.View.extend({
 
 	render: function() {
 		this.$el.html(Mustache.to_html(this.template,this.model.attributes));
-		var statValueView = new StatValueView({model:this.model});
+		var statValueView = new StatValueView({model:this.model, vent:vent});
 		this.$el.append(statValueView.el);
     return this;
 	}

@@ -83,6 +83,39 @@ function createBaseCharacter(characterName) {
 	  statModel.set({totalValue:sum});
   };
 
+  testChar.attributes.stats.getAffectedByStats = function(statModel){
+  	var found = new StatCollection(statModel);
+  	var searched = new StatCollection();
+
+  	while (found.length != searched.length) {
+	  	//get list of found but not checked stats
+	  	var unsearched = found.clone();
+	  	searched.each(function(searchedStat) {
+	  		unsearched.remove(searchedStat);
+	  	});
+
+	  	searched.add(statModel);
+
+	  	//for each unsearched stat...
+		  for (var i=0; i<unsearched.length;i++){
+		  	//go through whole collection...
+		  	this.each(function(checkedModel){
+	  			//check the model's affectsstats collection for the unsearched stat
+	  			checkedModel.attributes.affectsStats.each(function(affectsStat){
+	  				//check if model's affectsstats collection model matches our unsearched model
+	  				if (affectsStat == unsearched.models[i]) {
+	  					//add to found list if not already present
+  						found.add(checkedModel);
+	  				};	
+	  			});
+		  	});
+	  		searched.add(unsearched.models[i])
+	  	};
+	  };
+
+	  return found;
+  }
+
   //2DO: create more selective update getTotalValue function that doesn't refresh entire collection's values
   testChar.attributes.stats.refreshTotalValues = function() {
   	testChar.attributes.stats.each(

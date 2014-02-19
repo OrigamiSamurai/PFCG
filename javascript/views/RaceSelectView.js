@@ -34,7 +34,6 @@ var RaceSelectView = Backbone.View.extend ({
     this.$el.find("#racesContainer").append(raceOption.el);
   },
 
-  //2DO: fill in racial bonus function
   generateRacialStats: function(raceSource) {
   	var statArray = new Array();
 
@@ -52,11 +51,14 @@ var RaceSelectView = Backbone.View.extend ({
     }
 
     switch (raceSource.attributes.description) {
-  		case "Human":
+  		//2DO: fill out default racial ability score modifiers
+      case "Human":
         addRacialAbilityStat(this.model,raceSource,2,abilityScoreNames[randomIntBetween(0,5)]);
   			break;
   		case "Dwarf":
-  			//create strength bonus
+        addRacialAbilityStat(this.model,raceSource,2,"Constitution");
+        addRacialAbilityStat(this.model,raceSource,2,"Wisdom");
+        addRacialAbilityStat(this.model,raceSource,-2,"Charisma");
   			break;
   		default:
   			break;

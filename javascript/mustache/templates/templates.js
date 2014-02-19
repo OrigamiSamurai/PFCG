@@ -95,6 +95,9 @@ templates.RaceSelectView = [
 ].join("");
 
 templates.StatValueView = [
-	"{{totalValue}} <img src=\"images/magnifying_glass.jpg\" alt=\"magnifying glass\"/>",
-	"<div class=\"toolTip\">This is some tooltip content</div>"
+	"{{totalValue}} <img src=\"images/magnifying_glass.jpg\" alt=\"magnifying glass\"/>"
+].join("");
+
+templates.ToolTipRowView = [
+	"<div>{{name}}: {{value}}, Desc: {{description}}</div>"
 ].join("");

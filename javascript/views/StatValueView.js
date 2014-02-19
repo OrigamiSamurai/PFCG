@@ -7,21 +7,27 @@ var StatValueView = Backbone.View.extend({
 	className: 'statValue',
 
 	initialize: function(options) {
-		this.listenTo(this.model,'change',this.render);
 		this.vent = options.vent;
+		this.listenTo(this.model,'change',this.render);
+		_.bindAll(this,"createToolTip");
+		_.bindAll(this,"removeToolTip");
 		this.render();
 		this.$el.hover(
-			function(){
-				$(this).children('.toolTip').show();
-			},
-			function(){
-				$(this).children('.toolTip').hide();
-			}
+			this.createToolTip,
+			this.removeToolTip
 		)
 	},
 
 	render: function() {
 		this.$el.html(Mustache.to_html(this.template,this.model.attributes));
     return this;
-	}
+	},
+
+	createToolTip: function() {
+		this.vent.trigger("createToolTip",this);
+	},
+
+	removeToolTip: function() {
+		this.vent.trigger("removeToolTip",this);
+	}	
 });
