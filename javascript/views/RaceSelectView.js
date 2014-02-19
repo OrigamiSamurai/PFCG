@@ -66,13 +66,8 @@ var RaceSelectView = Backbone.View.extend ({
     return statArray;
   },
 
-  //2DO: create utility function to remove all stats based on source from stats collection, then remove source from sources collection
   selectRace: function(raceSource) {
-  	//clear existing racial stats/sources
-  	var racialStats = this.model.attributes.stats.where({source:this.model.attributes.sources.findWhere({name:"Race"})})//get racial stats
-  	racialStats.forEach(function(stat){
-      stat.destroy();
-    })
+  	//clear existing racial stats/sources (stats deleted automatically)
   	var racialSources = this.model.attributes.sources.where({name:"Race"});
     racialSources.forEach(function(source){
       source.destroy();

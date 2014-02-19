@@ -1,5 +1,3 @@
-//2DO: generalize ability score view to generic stat value view, then populate tooltips with this
-//2DO: include protection against never-ending tooltips... a.k.a. render additional tooltips on demand somehow
 var AbilityScoreView = Backbone.View.extend({
 	className: "abilityScoreContainer",
 

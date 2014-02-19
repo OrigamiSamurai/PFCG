@@ -1,5 +1,9 @@
 var CharacterView = Backbone.View.extend({
 	
+	events: {
+		"keyup #characterName input":"updateCharacterName"
+	},
+
 	id: "characterView",
 
 	template: templates.CharacterView,
@@ -7,7 +11,6 @@ var CharacterView = Backbone.View.extend({
 	initialize: function(options) {
 		_.bindAll(this,"changeCharacter");
 		options.vent.bind("changeCharacter", this.changeCharacter);
-		//2DO: check this
 		_.bindAll(this,"createToolTip");
 		options.vent.bind("createToolTip", this.createToolTip);
 
@@ -16,6 +19,7 @@ var CharacterView = Backbone.View.extend({
 
 	render: function() {
 		this.$el.html(Mustache.to_html(this.template,this.model.attributes));
+		
 		var abilityScoresView = new AbilityScoresView({collection:this.model.attributes.stats, vent:vent});
 		this.$el.append(abilityScoresView.el);
 		var raceSelectView = new RaceSelectView({model:this.model,vent:vent});
@@ -24,6 +28,17 @@ var CharacterView = Backbone.View.extend({
 		var debugBarView = new DebugBarView({model:this.model,vent:vent});
 		this.$el.append(debugBarView.el)
 		$('body').append(this.$el);
+    
+		//select all on click name input
+    $("#characterName input").on("click", function() {
+   		$(this).select();
+		});
+    
+    //populate race UI
+		if (this.model.attributes.sources.where({name:"Race"}).length > 0) {
+			$('input[name="race"][value="'+this.model.attributes.sources.where({name:"Race"})[0].attributes.description+'"]').prop('checked',true);
+			$('#racePreview').text("Race: "+this.model.attributes.sources.where({name:"Race"})[0].attributes.description);
+		};
     return this;
 	},
 
@@ -31,14 +46,19 @@ var CharacterView = Backbone.View.extend({
 		this.remove();
 	},
 
-	//2DO: debug create tool tip function
 	createToolTip: function(view) {
-	//create a tooltip view under the statValueView's element
 		var toolTipView = new ToolTipView({
 			collection:this.model.attributes.stats.getAffectedByStats(view.model),
 			vent:vent
 		});
 		view.$el.append(toolTipView.el);
+	},
+
+	updateCharacterName: function(keyUp) {
+		if (keyUp.keyCode == 13) {
+			$('#characterName input').blur();	
+		}
+		this.model.set({name:$('#characterName input').val()});
 	}
 
 });

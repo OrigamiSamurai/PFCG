@@ -20,14 +20,14 @@ var DebugBarView = Backbone.View.extend({
 		this.model.attributes.stats.each(
 			function(stat){
 				var debugStatView = new DebugStatView({model:stat});
-				this.$el.find('div#debugStatsContainer').append(debugStatView.el);
+				this.$el.find('div#debugStatsContainer table').append(debugStatView.el);
 			},
 			this
 		);
 		this.model.attributes.sources.each(
 			function(source){
 				var debugSourceView = new DebugSourceView({model:source});
-				this.$el.find('div#debugSourcesContainer').append(debugSourceView.el);
+				this.$el.find('div#debugSourcesContainer table').append(debugSourceView.el);
 			},
 			this
 		);
@@ -47,3 +47,5 @@ var DebugBarView = Backbone.View.extend({
 		 };
 	}
 });
+
+//2DO: create interface to create new stats/sources

@@ -55,7 +55,6 @@ var CharacterSelectView = Backbone.View.extend ({
 
   selectCharacter: function(selectedChar) {
     this.toggleButtons([false,false,true]);
-    console.log(selectedChar);
     var characterView = new CharacterView ({model:selectedChar, vent:vent})
   },
 

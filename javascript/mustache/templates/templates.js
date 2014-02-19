@@ -48,15 +48,10 @@ templates.CharacterSelectView = [
 	"<button id=\"changeCharacter\">Change Character</button>"
 ].join("");
 
-
-//2D0: change character name to text field, disabled by default
-//2DO: add edit "link" next to next
-//2DO: add button to change name
-//2DO: wire change name button, including check against existing characters
-//2DO: add keyup check for enter to change name
-
 templates.CharacterView = [
-	"Name: <span class=\"characterName\">{{name}}</span>"
+	"Name: <span id=\"characterName\">",
+	"<input type=\"text\" value=\"{{name}}\"></input>",
+	"</span>"
 ].join("");
 
 templates.DebugBarView = [
@@ -64,18 +59,46 @@ templates.DebugBarView = [
 		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
 		"Debug Bar",
 	"</div>",
-	"<div id=\"debugStatsContainer\">Stats</div>",
-	"<div id=\"debugSourcesContainer\">Sources</div>"
+	"<div id=\"debugStatsContainer\">",
+		"Stats",
+		"<table>",
+			"<th>Name</th>",
+			"<th>Value</th>",
+			"<th>Description</th>",
+			"<th>Level Gained</th>",
+			"<th>Source</th>",
+			"<th>Log</th>",
+			"<th>Delete</th>",
+		"</table>",
+	"</div>",
+	"<div id=\"debugSourcesContainer\">",
+		"Sources",
+		"<table>",
+			"<th>Name</th>",
+			"<th>Description</th>",
+			"<th>Level Gained</th>",
+			"<th>Log</th>",
+			"<th>Delete</th>",
+		"</table>",
+	"</div>"
 ].join("");
 
 templates.DebugSourceView = [
-	"\"{{name}}\": Level Gained: {{levelGained}}, Description: {{description}} ",
-	"<button class=\"logModel\">Log to console</button>"
+	"<td>{{name}}</td>",
+	"<td>{{description}}</td>",
+	"<td>{{levelGained}}</td>",
+	"<td><button class=\"logModel\">Log to console</button></td>",
+	"<td><button class=\"deleteModel\">Delete</button></td>"
 ].join("");
 
 templates.DebugStatView = [
-	"\"{{name}}\": Value: {{value}}, Level Gained: {{levelGained}}, Description: {{description}} ",
-	"<button class=\"logModel\">Log to console</button>"
+	"<td>{{name}}</td>",
+	"<td>{{value}}</td>",
+	"<td>{{description}}</td>",
+	"<td>{{levelGained}}</td>",
+	"<td>{{sourceName}}</td>",
+	"<td><button class=\"logModel\">Log to console</button></td>",
+	"<td><button class=\"deleteModel\">Delete</button></td>"
 ].join("");
 
 templates.RaceOptionView = [
@@ -98,6 +121,22 @@ templates.StatValueView = [
 	"{{totalValue}} <img src=\"images/magnifying_glass.jpg\" alt=\"magnifying glass\"/>"
 ].join("");
 
-templates.ToolTipRowView = [
-	"<div>{{name}}: {{value}}, Desc: {{description}}</div>"
+templates.ToolTipView = [
+	"<table>",
+		"<tr>",
+			"<th>Name</th>",
+			"<th>Value</th>",
+			"<th>Description</th>",
+			"<th>Source</th>",
+		"</tr>",
+	"</table>"
+].join("");
+
+templates.ToolTipViewRow = [
+	"<tr>",
+		"<td>{{name}}</td>",
+		"<td>{{value}}</td>",
+		"<td>{{description}}</td>",
+		"<td>{{sourceName}}</td>",
+	"</tr>"
 ].join("");

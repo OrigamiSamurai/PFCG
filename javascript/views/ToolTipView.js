@@ -8,9 +8,19 @@ var ToolTipView = Backbone.View.extend({
 	},
 
 	render: function() {
+		this.$el.append(Mustache.to_html(templates.ToolTipView));
 		this.collection.each(
 			function(stat){
-				this.$el.append(Mustache.to_html(templates.ToolTipRowView,stat.attributes));
+				this.$el.find('table').append(Mustache.to_html(
+					templates.ToolTipViewRow,
+					{
+						name:stat.attributes.name,
+						value:stat.attributes.value,
+						levelGained:stat.attributes.levelGained,
+						description:stat.attributes.description,
+						sourceName:stat.attributes.source.attributes.name
+					}
+				));
 			},
 			this
 		);

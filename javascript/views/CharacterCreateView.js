@@ -21,8 +21,6 @@ var CharacterCreateView = Backbone.View.extend ({
     return this;
 	},
 
-	//2DO: add keyup check for escape to cancel
-
   cancelCreateCharacter: function() {
   	this.vent.trigger("selectCharacterCancelled");//trigger our event called cancelCreateCharacter (vent._events.cancelCreateCharacter[0]) with this model as the context. 
   	this.remove();
@@ -41,7 +39,7 @@ var CharacterCreateView = Backbone.View.extend ({
 		var newCharName = $('#characterNewName').val();
 
 		if (newCharName && newCharName != "") {
-			var newChar = createBaseCharacter(newCharName);
+			var newChar = new Character({name:newCharName});
 			this.collection.add(newChar);
 			this.vent.trigger("characterSelected",newChar);//triggers an event and passes in newCharName as an argument. Additional arguments can be passed in if necessary
 			this.remove();		

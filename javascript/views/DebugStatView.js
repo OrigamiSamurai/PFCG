@@ -1,9 +1,10 @@
 var DebugStatView = Backbone.View.extend({
-	
-	className: "debugStatContainer",
+
+	tagName: "tr",
 
 	events: {
-		"click button.logModel":"logModel"
+		"click button.logModel":"logModel",
+		"click button.deleteModel":"killModel"
 	},
 
 	template: templates.DebugStatView,
@@ -15,8 +16,20 @@ var DebugStatView = Backbone.View.extend({
 	},
 
 	render: function() {
-		this.$el.html(Mustache.to_html(this.template,this.model.attributes));
+		this.$el.html(Mustache.to_html(this.template,
+			{
+				name:this.model.attributes.name,
+				value:this.model.attributes.value,
+				description:this.model.attributes.description,
+				levelGained:this.model.attributes.levelGained,
+				sourceName:this.model.attributes.source.attributes.name,
+			}
+		));
     return this;
+	},
+
+	killModel: function(){
+		this.model.destroy();
 	},
 
 	logModel: function() {

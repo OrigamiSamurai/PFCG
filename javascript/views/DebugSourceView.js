@@ -1,9 +1,10 @@
 var DebugSourceView = Backbone.View.extend({
 	
-	className: "debugSouceContainer",
+	tagName: "tr",
 
 	events: {
-		"click button.logModel":"logModel"
+		"click button.logModel":"logModel",
+		"click button.deleteModel":"killModel"
 	},
 
 	template: templates.DebugSourceView,
@@ -17,6 +18,10 @@ var DebugSourceView = Backbone.View.extend({
 	render: function() {
 		this.$el.html(Mustache.to_html(this.template,this.model.attributes));
     return this;
+	},
+
+	killModel: function(){
+		this.model.destroy();
 	},
 
 	logModel: function() {

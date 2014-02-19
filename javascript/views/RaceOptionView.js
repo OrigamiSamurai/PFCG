@@ -1,5 +1,7 @@
 var RaceOptionView = Backbone.View.extend({
 
+	className: "raceContainer",
+
 	template: templates.RaceOptionView,
 
 	events: {
