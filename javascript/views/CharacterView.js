@@ -25,8 +25,8 @@ var CharacterView = Backbone.View.extend({
 		var raceSelectView = new RaceSelectView({model:this.model,vent:vent});
 		this.$el.append(raceSelectView.el);
 		
-		var debugBarView = new DebugBarView({model:this.model,vent:vent});
-		this.$el.append(debugBarView.el)
+		var debugView = new DebugView({model:this.model,vent:vent});
+		this.$el.append(debugView.el)
 		$('body').append(this.$el);
     
 		//select all on click name input

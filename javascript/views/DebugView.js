@@ -1,10 +1,11 @@
-var DebugBarView = Backbone.View.extend({
-	id: "debugBar",
+var DebugView = Backbone.View.extend({
+	id: "debug",
 
-	template: templates.DebugBarView,
+	template: templates.DebugView,
 
 	events: {
-		"click #debugBarTitle":"toggleShowHide"
+		"click #debugTitle":"toggleShowHide",
+		"click #addStat":"openAddStat",
 	},
 
 	initialize: function(options) {
@@ -34,8 +35,14 @@ var DebugBarView = Backbone.View.extend({
     return this;
 	},
 
+	openAddStat: function() {
+		console.log("Now we're going to add a stat!");
+		var createStatView = new CreateStatView({model:this.model});
+		this.$el.find('#debugStatsContainer').append(createStatView.el);
+	},
+
 	toggleShowHide: function() {
-		toggleAllExcept("#debugBar",".nocollapse",this.collapsed);
+		toggleAllExcept("#debug",".nocollapse",this.collapsed);
 		 if (this.collapsed == true) {
 		 	this.collapsed = false;
 		 	console.log(this.$el);
@@ -49,3 +56,5 @@ var DebugBarView = Backbone.View.extend({
 });
 
 //2DO: create interface to create new stats/sources
+//2DO: make debug stats and debug sources into their own views, and make them collapsible
+//2DO: update UI layer with Bootstrap

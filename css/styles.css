@@ -29,7 +29,18 @@ button#changeCharacter {
 	display:none;
 }
 
-table, th, td
-{
-border: 1px solid black;
+table, th, td {
+	border: 1px solid black;
+}
+
+table {
+	width:100%;
+}
+
+.title {
+	background-color: #CCFFFF;
+}
+
+th {
+	background-color:#EEEEEE;
 }

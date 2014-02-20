@@ -54,10 +54,50 @@ templates.CharacterView = [
 	"</span>"
 ].join("");
 
-templates.DebugBarView = [
-	"<div id=\"debugBarTitle\" class=\"nocollapse title\">",	
+templates.ChooseSource = [
+	"<div>",
+		"<label>",
+			"<input type=\"radio\" name=\"chooseSource\" value=\"{{cid}}\">",
+				"{{name}} - {{description}} - Gained: {{levelGained}}",
+			"</input>",
+		"</label>",
+	"</div>"
+].join("");
+
+templates.ChooseStat = [
+	"<div>",
+		"<label>",
+			"<input type=\"checkbox\" name=\"chooseStats\" value=\"{{cid}}\">",
+				"{{name}} - {{description}} - Level: {{levelGained}} - Source: {{sourceName}}",
+			"</input>",
+		"</label>",
+	"</div>"
+].join("");
+
+templates.CreateStatView = [
+	"<div>Name: <input type=\"text\" class=\"createStatName\"></input></div>",
+	"<div>Value: <input type=\"text\" class=\"createStatValue\"></input></div>",
+	"<div>Description: <input type=\"text\" class=\"createStatDescription\"></input></div>",
+	"<div>Level Gained: <input type=\"text\" class=\"createStatLevelGained\"></input></div>",
+	"<div>",
+		"Source:",
+		"<div class=\"chooseSourceContainer\">",
+			"List sources here",
+		"</div>",
+	"</div>",
+	"<div>",
+		"Stat:",
+		"<div class=\"chooseStatsContainer\">",
+			"List stats here",
+		"</div>",
+	"</div>",
+	"<button class=\"createStat\">Add!</button>"
+].join("");
+
+templates.DebugView = [
+	"<div id=\"debugTitle\" class=\"nocollapse title\">",	
 		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
-		"Debug Bar",
+		"Debug Bar - Use at your own risk !",
 	"</div>",
 	"<div id=\"debugStatsContainer\">",
 		"Stats",
@@ -70,6 +110,7 @@ templates.DebugBarView = [
 			"<th>Log</th>",
 			"<th>Delete</th>",
 		"</table>",
+		"<button id=\"addStat\">Add Stat</button>",
 	"</div>",
 	"<div id=\"debugSourcesContainer\">",
 		"Sources",
