@@ -23,4 +23,6 @@ var RaceOptionView = Backbone.View.extend({
 		this.vent.trigger("raceSelected",this.model);
 	}
 
+	//2DO: add radio buttons to select a stat to add bonus to for races that get a variable bonus
+
 });

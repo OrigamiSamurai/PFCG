@@ -14,18 +14,28 @@ templates.AbilityScoresView = [
 		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
 		"Ability Scores",
 	"</div>",
-	"<div id=\"abilityScoreRowsContainer\"></div>",
-	"<div>",
-		"Reroll: Take best <input type=\"text\" value=\"3\" maxlength=\"1\" size=\"1\" id=\"rollXbest\"></input>",
-		"of <input type=\"text\" value=\"4\" maxlength=\"1\" size=\"1\" id=\"rollofY\"></input>",
-		"d<input type=\"text\" value=\"6\" maxlength=\"1\" size=\"1\" id=\"rolldZ\"></input> ",
-		"rerolling anything <input type=\"text\" value=\"\" maxlength=\"1\" size=\"1\" id=\"rollrerollingA\"></input> or below. ",
+	"<div id=\"abilityScoreRowsContainer\">",
+		"<table>",
+			"<th>Score</th>",
+			"<th>Value</th>",
+			"<th>View</th>",
+			"<th>Base Score</th>",
+		"</table>",
+	"</div>",
+	"<div id=\"rollAbilityScoresContainer\">",
+		"Reroll: Take best <input type=\"number\" value=\"3\" max=\"9\" min=\"1\" id=\"rollXbest\"></input> ",
+		"of <input type=\"number\" value=\"4\" max=\"9\" min=\"1\" id=\"rollofY\"></input>",
+		"d<input type=\"number\" value=\"6\" max=\"20\" min=\"1\" id=\"rolldZ\"></input> ",
+		"rerolling anything <input type=\"number\" value=\"1\" max=\"9\" min=\"0\" id=\"rollrerollingA\"></input> or below. ",
 		"<button id=\"rollAbilityScores\">Roll!</button>",
 	"</div>"
 ].join("");
 
 templates.AbilityScoreView = [
-	"{{name}}: "
+	"<td>{{name}}</td>",
+	"<td class=\"abilityScoreTotalValue\">{{totalValue}}</td>",
+	"<td><img src=\"images/magnifying_glass.jpg\" alt=\"magnifying glass\"/></td>",
+	"<td>Base: <input class=\"newStatValue\" type=\"number\" min=\"{{minBaseStat}}\" max=\"{{maxBaseStat}}\" value=\"{{value}}\"></td>"
 ].join("");
 
 templates.CharacterCreateView = [
@@ -97,7 +107,17 @@ templates.CreateStatView = [
 			"List stats here",
 		"</div>",
 	"</div>",
-	"<button class=\"createStat\">Add!</button>"
+	"<button class=\"createStat\">Add!</button>",
+	"<button class=\"cancelCreateStat\">Cancel</button>",
+].join("");
+
+templates.CreateSourceView = [
+	"<div>Name: <input type=\"text\" class=\"createSourceName\"></input></div>",
+	"<div>Description: <input type=\"text\" class=\"createSourceDescription\"></input></div>",
+	"<div>Level Gained: <input type=\"text\" class=\"createSourceLevelGained\"></input></div>",
+	"<div>",
+	"<button class=\"createSource\">Add!</button>",
+	"<button class=\"cancelCreateSource\">Cancel</button>",
 ].join("");
 
 templates.DebugView = [
@@ -127,6 +147,7 @@ templates.DebugView = [
 			"<th>Log</th>",
 			"<th>Delete</th>",
 		"</table>",
+		"<button id=\"addStat\">Add Source</button>",
 	"</div>"
 ].join("");
 

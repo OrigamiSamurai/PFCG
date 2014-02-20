@@ -30,3 +30,6 @@ var characterSelectView = new CharacterSelectView({collection: characterCollecti
 
 //Render the character view
 characterSelectView.render();
+
+//2DO: add ability to change random ability bonus from race
+//2DO: add validation to all fields

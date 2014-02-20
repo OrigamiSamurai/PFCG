@@ -51,7 +51,8 @@ var CharacterView = Backbone.View.extend({
 			collection:this.model.attributes.stats.getAffectedByStats(view.model),
 			vent:vent
 		});
-		view.$el.append(toolTipView.el);
+		view.$el.children().first().append(toolTipView.el);
+		view.$el.find('.toolTipContainer').css({left:view.$el.position().left+30,top:view.$el.position().top+30});
 	},
 
 	updateCharacterName: function(keyUp) {

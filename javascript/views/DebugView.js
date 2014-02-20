@@ -6,6 +6,9 @@ var DebugView = Backbone.View.extend({
 	events: {
 		"click #debugTitle":"toggleShowHide",
 		"click #addStat":"openAddStat",
+		"click #addSource":"openAddSource",
+		"keypress input.createStatValue":"validateInput",
+		"keypress input.createStatLevelGained":"validateInput",
 	},
 
 	initialize: function(options) {
@@ -52,9 +55,14 @@ var DebugView = Backbone.View.extend({
 		 	this.collapsed = true;
 		 	this.$el.find('.collapse').html(Mustache.to_html(templates.CollapseClosed));
 		 };
+	},
+
+	validateInput: function(keyEvent) {
+		validatePositiveIntegerInput(keyEvent);
 	}
+
 });
 
-//2DO: create interface to create new stats/sources
+//2DO: create interface to create new sources
 //2DO: make debug stats and debug sources into their own views, and make them collapsible
 //2DO: update UI layer with Bootstrap

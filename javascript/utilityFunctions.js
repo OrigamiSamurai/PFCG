@@ -50,3 +50,54 @@ function toggleAllExcept(parentElemJquery,childElemJquery,bool) {
 		$(parentElemJquery).children().not(childElemJquery).hide();
 	};
 }
+
+function validatePositiveIntegerInput(keyEvent) {
+		if (keyEvent.keyCode != 8 && keyEvent.keyCode != 46 && (keyEvent.keyCode < 48 || keyEvent.keyCode > 57)) {
+			keyEvent.preventDefault();
+			return false;
+		}
+		else {
+			return true;
+		}
+}
+
+function validateLength(keyEvent,input,existingValue,maxlength) {
+		if (existingValue.length >= maxlength && isAnyTextSelected(input) == false) {
+			keyEvent.preventDefault();
+			return false;
+		}
+		else {
+			return true;
+		}
+}
+
+function validateInRange(value,min,max) {
+	if (value >= min && value <= max) {
+		return true;
+	}
+	else {
+		return false;
+	};
+}
+
+function isAnyTextSelected(input) {
+    if (typeof input.selectionStart == "number") {
+      if (input.value.length - input.selectionStart > 0) {
+      	return true;
+      }
+      else {
+      	return false;
+      };
+    }
+    else {
+    	return false;
+    };
+}
+
+function simpleClone(x,propertiesToAdd) {
+	var y = _.extend({}, x);
+	for (var property in propertiesToAdd) {
+		y[property] = propertiesToAdd[property];
+	};
+	return y;
+}
