@@ -31,7 +31,7 @@ var AbilityScoresView = Backbone.View.extend({
 
 	randomizeStats3d6: function() {
 		for (var i=0;i<abilityScoreNames.length;i++) {
-			this.collection.findWhere({name:abilityScoreNames[i]}).set({value:rollxdy(3,6)});
+			this.collection.findWhere({name:abilityScoreNames[i]}).set({value:rollXdY(3,6)});
 		};
 	},
 
