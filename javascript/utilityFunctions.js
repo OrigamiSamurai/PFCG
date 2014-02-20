@@ -19,7 +19,7 @@ function rollXdYrerollA(x,y,a) {
  return sum;
 }
 
-function bestXofYdZIgnoreA(x,y,z,a){
+function rollBestXofYdZIgnoreA(x,y,z,a){
 	//check if a is undefined
 	if (typeof a == 'undefined') {
 		a = 0;
@@ -30,7 +30,7 @@ function bestXofYdZIgnoreA(x,y,z,a){
 	dieResults = new Array();
 	//roll y dice of size z
 	for (var i=0; i<y;i++){
-		dieResults.push(rollXdYrerollA(1,a));
+		dieResults.push(rollXdYrerollA(1,z,a));
 	};
 	//grab highest value, then delete that value
 	for (var i=0; i<x;i++){

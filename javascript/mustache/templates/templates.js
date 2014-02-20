@@ -15,7 +15,13 @@ templates.AbilityScoresView = [
 		"Ability Scores",
 	"</div>",
 	"<div id=\"abilityScoreRowsContainer\"></div>",
-	"<button id=\"randomizeStats3d6\">Randomize Stats (Straight 3d6)</button>"
+	"<div>",
+		"Reroll: Take best <input type=\"text\" value=\"3\" maxlength=\"1\" size=\"1\" id=\"rollXbest\"></input>",
+		"of <input type=\"text\" value=\"4\" maxlength=\"1\" size=\"1\" id=\"rollofY\"></input>",
+		"d<input type=\"text\" value=\"6\" maxlength=\"1\" size=\"1\" id=\"rolldZ\"></input> ",
+		"rerolling anything <input type=\"text\" value=\"\" maxlength=\"1\" size=\"1\" id=\"rollrerollingA\"></input> or below. ",
+		"<button id=\"rollAbilityScores\">Roll!</button>",
+	"</div>"
 ].join("");
 
 templates.AbilityScoreView = [
@@ -159,7 +165,9 @@ templates.RaceSelectView = [
 ].join("");
 
 templates.StatValueView = [
-	"{{totalValue}} <img src=\"images/magnifying_glass.jpg\" alt=\"magnifying glass\"/>"
+	"{{totalValue}} ",
+	"<img src=\"images/magnifying_glass.jpg\" alt=\"magnifying glass\"/> ",
+	"Base: <input class=\"newStatValue\" type=\"text\" value=\"{{value}}\" size=\"2\" maxlength=\"2\">"
 ].join("");
 
 templates.ToolTipView = [

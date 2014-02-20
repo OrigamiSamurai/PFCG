@@ -4,7 +4,7 @@ var AbilityScoresView = Backbone.View.extend({
 	template: templates.AbilityScoresView,
 
 	events: {
-		"click #randomizeStats3d6":"randomizeStats3d6",
+		"click #rollAbilityScores":"rollAbilityScores",
 		"click #abilityScoresTitle":"toggleShowHide"
 	},
 
@@ -29,9 +29,19 @@ var AbilityScoresView = Backbone.View.extend({
     return this;
 	},
 
-	randomizeStats3d6: function() {
+	rollAbilityScores: function() {
+		var rollXbest = parseInt(this.$el.find('input#rollXbest').val());
+		var rollofY = parseInt(this.$el.find('input#rollofY').val());
+		var rolldZ = parseInt(this.$el.find('input#rolldZ').val());
+		var rollrerollingA = 0;
+		if (this.$el.find('input#rollrerollingA').val() != "") {
+			rollrerollingA = parseInt(this.$el.find('input#rollrerollingA').val());
+		}
+
 		for (var i=0;i<abilityScoreNames.length;i++) {
-			this.collection.findWhere({name:abilityScoreNames[i]}).set({value:rollXdY(3,6)});
+			this.collection.findWhere({name:abilityScoreNames[i]}).set({
+				value: rollBestXofYdZIgnoreA(rollXbest,rollofY,rolldZ,rollrerollingA)
+			});
 		};
 	},
 

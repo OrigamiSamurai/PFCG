@@ -60,6 +60,27 @@ var RaceSelectView = Backbone.View.extend ({
         addRacialAbilityStat(this.model,raceSource,2,"Wisdom");
         addRacialAbilityStat(this.model,raceSource,-2,"Charisma");
   			break;
+      case "Elf":
+        addRacialAbilityStat(this.model,raceSource,2,"Dexterity");
+        addRacialAbilityStat(this.model,raceSource,2,"Intelligence");
+        addRacialAbilityStat(this.model,raceSource,-2,"Constitution");
+        break;
+      case "Gnome":
+        addRacialAbilityStat(this.model,raceSource,2,"Constitution");
+        addRacialAbilityStat(this.model,raceSource,-2,"Strength");
+        addRacialAbilityStat(this.model,raceSource,2,"Charisma");
+        break;
+      case "Half-Elf":
+        addRacialAbilityStat(this.model,raceSource,2,abilityScoreNames[randomIntBetween(0,5)]);
+        break;
+      case "Half-Orc":
+        addRacialAbilityStat(this.model,raceSource,2,abilityScoreNames[randomIntBetween(0,5)]);
+        break;
+      case "Halfling":
+        addRacialAbilityStat(this.model,raceSource,2,"Dexterity");
+        addRacialAbilityStat(this.model,raceSource,-2,"Strength");
+        addRacialAbilityStat(this.model,raceSource,2,"Charisma");
+        break;
   		default:
   			break;
   	};

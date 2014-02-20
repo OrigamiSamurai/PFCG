@@ -1,5 +1,9 @@
 var StatValueView = Backbone.View.extend({
 
+	events: {
+		"keypress input.newStatValue":"updateStat"
+	},
+
 	template: templates.StatValueView,
 
 	tagName: 'span',
@@ -16,6 +20,7 @@ var StatValueView = Backbone.View.extend({
 			this.createToolTip,
 			this.removeToolTip
 		)
+		_.bindAll(this,'updateStat');
 	},
 
 	render: function() {
@@ -25,6 +30,20 @@ var StatValueView = Backbone.View.extend({
 
 	createToolTip: function() {
 		this.vent.trigger("createToolTip",this);
+	},
+
+	updateStat: function() {
+		var timeoutId = 0;
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(
+			$.proxy(
+				function (){
+					this.model.set({value:parseInt(this.$el.find('.newStatValue').val())})
+				},
+				this
+			),
+			1000
+		)
 	},
 
 	removeToolTip: function() {
