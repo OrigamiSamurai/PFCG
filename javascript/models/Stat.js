@@ -6,6 +6,15 @@ var Stat = Backbone.Model.extend({
 		description: "",
 		source: new Backbone.Model(),
 		affectsStats: new Backbone.Collection(),
-		totalValue:0
+		totalValue:0,
+		calculateFunction: function (statCollection) {
+			var sum=0;
+
+		  for (var i=0; i<statCollection.length;i++) {
+		  	sum += statCollection.models[i].attributes.value;
+		  };
+
+		  return sum;
+		}
 	}
 });

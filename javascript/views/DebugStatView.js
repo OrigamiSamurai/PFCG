@@ -20,6 +20,7 @@ var DebugStatView = Backbone.View.extend({
 			{
 				name:this.model.attributes.name,
 				value:this.model.attributes.value,
+				totalValue:this.model.attributes.totalValue,
 				description:this.model.attributes.description,
 				levelGained:this.model.attributes.levelGained,
 				sourceName:this.model.attributes.source.attributes.name,

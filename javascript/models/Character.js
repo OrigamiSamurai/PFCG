@@ -10,20 +10,43 @@ var Character = Backbone.Model.extend({
 		baseSources.add(
 			new Source({name:"Character Creation",levelGained:0,description:"Character Creation"})
 		);
-	  var baseStats = new StatCollection();
+	  
+	  this.attributes.stats = new StatCollection();
+
+	  //2d): DELETE THIS
+		//var baseStats = new StatCollection();
+	  
 		for (var i=0;i<abilityScoreNames.length;i++){
-			baseStats.add(new Stat({
+			this.attributes.stats.add(new Stat({
+				name:abilityScoreNames[i]+" Bonus",
+				value:0,
+				levelGained:0,
+				description:"Calculated "+abilityScoreNames[i]+" Bonus",
+				source:baseSources.at(0),
+				affectsStats:new StatCollection(),
+				totalValue:0,
+				calculateFunction: function(statCollection) {
+				  var sum=0;
+
+				  for (var i=0; i<statCollection.length;i++) {
+		  			sum += statCollection.models[i].attributes.value;
+		  		}
+
+		  		return Math.round((sum - 10.5)/2);
+				}
+			}));
+			this.attributes.stats.add(new Stat({
 				name:abilityScoreNames[i],
 				value:10,
 				levelGained:0,
 				description:"Base "+abilityScoreNames[i],
 				source:baseSources.at(0),
-				affectsStats:new StatCollection(),
+				affectsStats:new StatCollection(this.attributes.stats.findWhere({description:"Calculated "+abilityScoreNames[i]+" Bonus"})),
 				totalValue:10
 			}));
+
 		};
 
-		this.attributes.stats = baseStats;
 		this.attributes.sources = baseSources;
 
 		this.attributes.sources.killSource = function(sourceName){
@@ -59,13 +82,8 @@ var Character = Backbone.Model.extend({
 		  		searched.add(unsearched.models[i])
 		  	};
 		  };
-
-		  var sum=0;
-
-		  for (var i=0; i<found.length;i++) {
-		  	sum += found.models[i].attributes.value;
-		  };
-		  statModel.set({totalValue:sum});
+	
+		  statModel.set({totalValue:statModel.attributes.calculateFunction(found)});
 	  };
 
 	  this.attributes.stats.getAffectedByStats = function(statModel){

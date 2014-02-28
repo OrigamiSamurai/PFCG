@@ -12,12 +12,12 @@ var AbilityScoresView = Backbone.View.extend({
 	initialize: function(options) {
 		this.rollXbestMin=0;
 		this.rollXbestMax=9;
-		this.rollofYMin=0;
+		this.rollofYMin=1;
 		this.rollofYMax=9;
-		this.rolldZMin=0;
-		this.rolldZMax=20;
+		this.rolldZMin=1;
+		this.rolldZMax=99;
 		this.rollrerollingAMin=0;
-		this.rollrerollingAMax=20;
+		this.rollrerollingAMax=99;
 		this.collapsed = false;
 		this.render();
 	},
@@ -26,31 +26,38 @@ var AbilityScoresView = Backbone.View.extend({
 		this.$el.html(Mustache.to_html(
 			this.template,
 			{
-				rollXbestMin:this.rollXbestMin;
-				rollXbestMax:this.rollXbestMax;
-				rollofYMin:this.rollofYMin;
-				rollofYMax:this.rollofYMax;
-				rolldZMin:this.rolldZMin;
-				rolldZMax:this.rolldZMax;
-				rollrerollingAMin:this.rollrerollingAMin;
-				rollrerollingAMax:this.rollrerollingAMax;
+				rollXbestMin:this.rollXbestMin,
+				rollXbestMax:this.rollXbestMax,
+				rollofYMin:this.rollofYMin,
+				rollofYMax:this.rollofYMax,
+				rolldZMin:this.rolldZMin,
+				rolldZMax:this.rolldZMax,
+				rollrerollingAMin:this.rollrerollingAMin,
+				rollrerollingAMax:this.rollrerollingAMax
 			}
 		));
 
 		for (var i=0;i<abilityScoreNames.length;i++) {
+			//create ability score view row
 			var abilityScoreView = new AbilityScoreView({
 				model:this.collection.findWhere({
 					name:abilityScoreNames[i]
 				}),
 				vent: vent
 			});
+			//add ability score bonus view
+			var abilityScoreBonusValueView = new AbilityScoreBonusValueView({
+				model:this.collection.findWhere({
+					name:abilityScoreNames[i]+" Bonus"
+				})
+			});
+			abilityScoreView.$el.children('.abilityScoreBonusValue').append(abilityScoreBonusValueView.el);
+
 			this.$el.find('div#abilityScoreRowsContainer table').append(abilityScoreView.el);
 		}
 
     return this;
 	},
-
-	//2DO: add ability bonus values! figure out how to calculate them
 
 	rollAbilityScores: function() {
 		var rollXbest = parseInt(this.$el.find('input#rollXbest').val());

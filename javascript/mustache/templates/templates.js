@@ -18,15 +18,16 @@ templates.AbilityScoresView = [
 		"<table>",
 			"<th>Score</th>",
 			"<th>Value</th>",
+			"<th>Bonus</th>",
 			"<th>View</th>",
 			"<th>Base Score</th>",
 		"</table>",
 	"</div>",
 	"<div id=\"rollAbilityScoresContainer\">",
-		"Reroll: Take best <input type=\"number\" value=\"3\" max=\"9\" min=\"1\" id=\"rollXbest\"></input> ",
-		"of <input type=\"number\" value=\"4\" max=\"9\" min=\"1\" id=\"rollofY\"></input>",
-		"d<input type=\"number\" value=\"6\" max=\"20\" min=\"1\" id=\"rolldZ\"></input> ",
-		"rerolling anything <input type=\"number\" value=\"1\" max=\"9\" min=\"0\" id=\"rollrerollingA\"></input> or below. ",
+		"Reroll: Take best <input type=\"number\" value=\"3\" max=\"{{rollXbestMax}}\" min=\"{{rollXbestMin}}\" id=\"rollXbest\"></input> ",
+		"of <input type=\"number\" value=\"4\" max=\"{{rollofYMax}}\" min=\"{{rollofYMin}}\" id=\"rollofY\"></input>",
+		"d<input type=\"number\" value=\"6\" max=\"{{rolldZMax}}\" min=\"{{rolldZMin}}\" id=\"rolldZ\"></input> ",
+		"rerolling anything <input type=\"number\" value=\"1\" max=\"{{rollrerollingAMax}}\" min=\"{{rollrerollingAMin}}\" id=\"rollrerollingA\"></input> or below. ",
 		"<button id=\"rollAbilityScores\">Roll!</button>",
 	"</div>"
 ].join("");
@@ -34,8 +35,13 @@ templates.AbilityScoresView = [
 templates.AbilityScoreView = [
 	"<td>{{name}}</td>",
 	"<td class=\"abilityScoreTotalValue\">{{totalValue}}</td>",
+	"<td class=\"abilityScoreBonusValue\"></td>",
 	"<td><img src=\"images/magnifying_glass.jpg\" alt=\"magnifying glass\"/></td>",
 	"<td>Base: <input class=\"newStatValue\" type=\"number\" min=\"{{minBaseStat}}\" max=\"{{maxBaseStat}}\" value=\"{{value}}\"></td>"
+].join("");
+
+templates.AbilityScoreBonusValueView = [
+	"{{totalValue}}"
 ].join("");
 
 templates.CharacterCreateView = [
@@ -130,6 +136,7 @@ templates.DebugView = [
 		"<table>",
 			"<th>Name</th>",
 			"<th>Value</th>",
+			"<th>Total Value</th>",
 			"<th>Description</th>",
 			"<th>Level Gained</th>",
 			"<th>Source</th>",
@@ -162,6 +169,7 @@ templates.DebugSourceView = [
 templates.DebugStatView = [
 	"<td>{{name}}</td>",
 	"<td>{{value}}</td>",
+	"<td>{{totalValue}}</td>",
 	"<td>{{description}}</td>",
 	"<td>{{levelGained}}</td>",
 	"<td>{{sourceName}}</td>",
