@@ -62,7 +62,6 @@ var AbilityScoreView = Backbone.View.extend({
 
 	updateStat: function(keyEvent) {
 		//check for empty field, and if so, set value to 0
-		//2DO: add validation to rollxdy fields similar to update ability score validation (length and values)
 		if (this.$el.find('.newStatValue').val() == "") {
 			this.model.set({value:0})
 		}

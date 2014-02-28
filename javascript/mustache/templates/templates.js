@@ -154,7 +154,7 @@ templates.DebugView = [
 			"<th>Log</th>",
 			"<th>Delete</th>",
 		"</table>",
-		"<button id=\"addStat\">Add Source</button>",
+		"<button id=\"addSource\">Add Source</button>",
 	"</div>"
 ].join("");
 
@@ -178,11 +178,26 @@ templates.DebugStatView = [
 ].join("");
 
 templates.RaceOptionView = [
-	"<label>",
-		"<input type=\"radio\" name=\"race\" value=\"{{description}}\">",
-			"{{description}}",
-		"</input>",
-	"</label>"
+	"<td>",
+		"<label>",
+			"<input type=\"radio\" name=\"race\" value=\"{{description}}\">",
+				"{{description}}",
+			"</input>",
+		"</label>",
+	"</td>",
+	"<td class='racialAbilityBonusSelectionContainer'>",
+		"<span class='raceDescription'>",
+			"{{raceDescription}}",
+			"<select class='racialAbilityBonusSelection' id='{{description}}AbilityScoreBonusSelection'>",
+				"<option value='Strength'>Strength</option>",
+				"<option value='Dexterity'>Dexterity</option>",
+				"<option value='Constitution'>Constitution</option>",
+				"<option value='Intelligence'>Intelligence</option>",
+				"<option value='Wisdom'>Wisdom</option>",
+				"<option value='Charisma'>Charisma</option>",
+			"<select>",
+		"</span>",
+	"</td>",
 ].join("");
 
 templates.RaceSelectView = [
@@ -190,7 +205,7 @@ templates.RaceSelectView = [
 		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
 		"<span id=\"racePreview\">Race: </span>",
 	"</div>",
-	"<div id=\"racesContainer\"></div>"
+	"<table id=\"racesContainer\"></table>"
 ].join("");
 
 templates.StatValueView = [

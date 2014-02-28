@@ -38,6 +38,12 @@ var DebugView = Backbone.View.extend({
     return this;
 	},
 
+	openAddSource: function() {
+		console.log("Now we're going to add a source!");
+		var createSourceView = new CreateSourceView({model:this.model});
+		this.$el.find('#debugSourcesContainer').append(createSourceView.el);
+	},
+
 	openAddStat: function() {
 		console.log("Now we're going to add a stat!");
 		var createStatView = new CreateStatView({model:this.model});
@@ -63,6 +69,4 @@ var DebugView = Backbone.View.extend({
 
 });
 
-//2DO: create interface to create new sources
-//2DO: make debug stats and debug sources into their own views, and make them collapsible
 //2DO: update UI layer with Bootstrap

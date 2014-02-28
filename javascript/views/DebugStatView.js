@@ -34,7 +34,7 @@ var DebugStatView = Backbone.View.extend({
 	},
 
 	logModel: function() {
-		console.log(this.model);
+		if (window.console) {console.log(this.model)};
 	}
 
 });

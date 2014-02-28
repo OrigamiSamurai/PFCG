@@ -19,4 +19,6 @@ var AbilityScoreBonusValueView = Backbone.View.extend({
 		this.$el.html(displayString);
     return this;
 	},
+
+	
 });

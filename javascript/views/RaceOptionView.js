@@ -2,11 +2,14 @@ var RaceOptionView = Backbone.View.extend({
 
 	className: "raceContainer",
 
+	tagName: "tr",
+
 	template: templates.RaceOptionView,
 
 	events: {
 		"click .raceName":"clickRadio",
-		"click input":"selectRace"
+		"click input":"selectRace",
+		"change .racialAbilityBonusSelection":"racialAbilityScoreBonusChanged"
 	},
 
 	initialize: function(options) {
@@ -15,14 +18,36 @@ var RaceOptionView = Backbone.View.extend({
 	},
 
 	render: function() {
-		this.$el.html(Mustache.to_html(this.template,this.model.attributes));
+		this.$el.html(Mustache.to_html(
+			this.template,
+			simpleClone(
+				this.model.attributes, 
+				{
+					raceDescription:raceDescriptions[races.indexOf(this.model.attributes.description)],
+				}
+			)
+		));
+		switch (this.model.attributes.description) {
+			case "Human":
+				this.$el.find('.racialAbilityBonusSelection').show().prop('disabled',true);
+				break;
+			case "Half-Elf":
+				this.$el.find('.racialAbilityBonusSelection').show().prop('disabled',true);
+				break;
+			case "Half-Orc":
+				this.$el.find('.racialAbilityBonusSelection').show().prop('disabled',true);
+				break;
+		}
+		//2DO: add in race description as part of template variables
     return this;
+	},
+
+	racialAbilityScoreBonusChanged: function() {
+		this.vent.trigger("racialAbilityScoreBonusChanged",this.model,this.$el.find('.racialAbilityBonusSelection').val());
 	},
 
 	selectRace: function() {
 		this.vent.trigger("raceSelected",this.model);
 	}
-
-	//2DO: add radio buttons to select a stat to add bonus to for races that get a variable bonus
 
 });

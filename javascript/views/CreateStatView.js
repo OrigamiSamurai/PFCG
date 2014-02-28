@@ -54,7 +54,7 @@ var CreateStatView = Backbone.View.extend({
 					value:parseInt(this.$el.find('.createStatValue').val()),
 					levelGained:parseInt(this.$el.find('.createStatLevelGained').val()),
 					description:this.$el.find('.createStatDescription').val(),
-					source:this.model.attributes.sources.get(this.$el.find('input[name="chooseSource"]').val()),
+					source:this.model.attributes.sources.get(this.$el.find('input[name="chooseSource"]:checked').val()),
 					affectsStats: affectsStatsCollection,
 					totalValue:0 //this will be updated as soon as the model is added to the character's stat collection
 				})

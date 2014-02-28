@@ -46,9 +46,6 @@ var StatValueView = Backbone.View.extend({
 		)
 	},
 
-	//2DO: validate input to make sure it's a number (check on keydown?)
-
-
 	removeToolTip: function() {
 		this.vent.trigger("removeToolTip",this);
 	}

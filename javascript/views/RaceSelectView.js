@@ -51,9 +51,10 @@ var RaceSelectView = Backbone.View.extend ({
     }
 
     switch (raceSource.attributes.description) {
-  		//2DO: fill out default racial ability score modifiers
       case "Human":
-        addRacialAbilityStat(this.model,raceSource,2,abilityScoreNames[randomIntBetween(0,5)]);
+        var randomStatName = abilityScoreNames[randomIntBetween(0,5)]
+        addRacialAbilityStat(this.model,raceSource,2,randomStatName);
+        $('#'+raceSource.attributes.description+"AbilityScoreBonusSelection").val(randomStatName);
   			break;
   		case "Dwarf":
         addRacialAbilityStat(this.model,raceSource,2,"Constitution");
@@ -71,10 +72,14 @@ var RaceSelectView = Backbone.View.extend ({
         addRacialAbilityStat(this.model,raceSource,2,"Charisma");
         break;
       case "Half-Elf":
-        addRacialAbilityStat(this.model,raceSource,2,abilityScoreNames[randomIntBetween(0,5)]);
+        var randomStatName = abilityScoreNames[randomIntBetween(0,5)]
+        addRacialAbilityStat(this.model,raceSource,2,randomStatName);
+        $('#'+raceSource.attributes.description+"AbilityScoreBonusSelection").val(randomStatName);
         break;
       case "Half-Orc":
-        addRacialAbilityStat(this.model,raceSource,2,abilityScoreNames[randomIntBetween(0,5)]);
+        var randomStatName = abilityScoreNames[randomIntBetween(0,5)]
+        addRacialAbilityStat(this.model,raceSource,2,randomStatName);
+        $('#'+raceSource.attributes.description+"AbilityScoreBonusSelection").val(randomStatName);
         break;
       case "Halfling":
         addRacialAbilityStat(this.model,raceSource,2,"Dexterity");
@@ -98,6 +103,11 @@ var RaceSelectView = Backbone.View.extend ({
   	this.model.attributes.sources.add(raceSource);
   	this.model.attributes.stats.add(this.generateRacialStats(raceSource));
     $('#racePreview').text("Race: "+raceSource.attributes.description);
+
+    //disable racial select dropdowns, then re-enable new selection's, if present
+    $('.racialAbilityBonusSelection').prop('disabled',true);
+    $('#'+raceSource.attributes.description+"AbilityScoreBonusSelection").prop('disabled',false);
+    //debug Select race with dropdown, change selection, then select other race with dropdown (new dropdown doesn't reflect existing bonus)
 	},
 
   toggleShowHide: function() {
