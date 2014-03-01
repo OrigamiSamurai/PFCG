@@ -1,5 +1,7 @@
 var CharacterCreateView = Backbone.View.extend ({
 
+	className: "panel panel-default",
+
 	id: "characterCreateContainer",
 
   template: templates.CharacterCreateView,

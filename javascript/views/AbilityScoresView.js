@@ -1,11 +1,13 @@
 var AbilityScoresView = Backbone.View.extend({
+
+	className: "panel panel-default",
+
 	id: "abilityScoresContainer",
 
 	template: templates.AbilityScoresView,
 
 	events: {
 		"click #rollAbilityScores":"rollAbilityScores",
-		"click #abilityScoresTitle":"toggleShowHide",
 		"keypress #rollAbilityScoresContainer":"validateInput"
 	},
 
@@ -79,19 +81,6 @@ var AbilityScoresView = Backbone.View.extend({
 		else {
 			alert("Best X number ("+rollXbest+") cannot be larger than number of dice rolled ("+rollofY+").")			
 		}
-	},
-
-	toggleShowHide: function() {
-		toggleAllExcept("#abilityScoresContainer",".nocollapse",this.collapsed);
-		 if (this.collapsed == true) {
-		 	this.collapsed = false;
-		 	console.log(this.$el);
-		 	this.$el.find('.collapse').html(Mustache.to_html(templates.CollapseOpen));
-		 }
-		 else if (this.collapsed == false) {
-		 	this.collapsed = true;
-		 	this.$el.find('.collapse').html(Mustache.to_html(templates.CollapseClosed));
-		 };
 	},
 
 	validateInput: function(keyEvent) {

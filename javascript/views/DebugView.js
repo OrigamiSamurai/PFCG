@@ -1,10 +1,12 @@
 var DebugView = Backbone.View.extend({
-	id: "debug",
+
+	className: "panel panel-default",
+
+	id: "debugContainer",
 
 	template: templates.DebugView,
 
 	events: {
-		"click #debugTitle":"toggleShowHide",
 		"click #addStat":"openAddStat",
 		"click #addSource":"openAddSource",
 		"keypress input.createStatValue":"validateInput",
@@ -48,19 +50,6 @@ var DebugView = Backbone.View.extend({
 		console.log("Now we're going to add a stat!");
 		var createStatView = new CreateStatView({model:this.model});
 		this.$el.find('#debugStatsContainer').append(createStatView.el);
-	},
-
-	toggleShowHide: function() {
-		toggleAllExcept("#debug",".nocollapse",this.collapsed);
-		 if (this.collapsed == true) {
-		 	this.collapsed = false;
-		 	console.log(this.$el);
-		 	this.$el.find('.collapse').html(Mustache.to_html(templates.CollapseOpen));
-		 }
-		 else if (this.collapsed == false) {
-		 	this.collapsed = true;
-		 	this.$el.find('.collapse').html(Mustache.to_html(templates.CollapseClosed));
-		 };
 	},
 
 	validateInput: function(keyEvent) {

@@ -1,5 +1,7 @@
 var CharacterSelectView = Backbone.View.extend ({
 
+  className: "panel panel-default",
+
   id: 'characterSelectContainer',
 
   template: templates.CharacterSelectView,
@@ -31,7 +33,7 @@ var CharacterSelectView = Backbone.View.extend ({
 
 	render: function () {
     this.$el.html(Mustache.to_html(this.template));
-    $('body').append(this.$el);
+    $('body .container').append(this.$el);
     return this;
 	},
 
@@ -44,7 +46,7 @@ var CharacterSelectView = Backbone.View.extend ({
     //enable the create view
     var characterCreateView = new CharacterCreateView({collection:this.collection, vent:vent});
     this.toggleButtons([false,false,false]);
-    $('body').append(characterCreateView.el);
+    this.$el.append(characterCreateView.el);
     $('#characterNewName').focus();
   },
 

@@ -1,5 +1,7 @@
 var CharacterSelectExistingView = Backbone.View.extend ({
 	
+	className: "panel panel-default",
+
 	id: "characterSelectExistingContainer",
 
 	template: templates.CharacterSelectExistingView,

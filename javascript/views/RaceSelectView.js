@@ -1,12 +1,10 @@
 var RaceSelectView = Backbone.View.extend ({
 	
-	id: "raceSelectContainer",
+	id: "racesContainer",
+
+  className: "panel panel-default",
 
 	template: templates.RaceSelectView,
-
-	events: {
-    "click #racesTitle":"toggleShowHide"
-	},
 
 	initialize: function(options) { //on initialization, the vent object gets passed in
   	this.collapsed = false;
@@ -102,25 +100,12 @@ var RaceSelectView = Backbone.View.extend ({
     //add new source and stats, then update preview text
   	this.model.attributes.sources.add(raceSource);
   	this.model.attributes.stats.add(this.generateRacialStats(raceSource));
-    $('#racePreview').text("Race: "+raceSource.attributes.description);
+    $('#racePreview a').text("Race: "+raceSource.attributes.description);
 
     //disable racial select dropdowns, then re-enable new selection's, if present
     $('.racialAbilityBonusSelection').prop('disabled',true);
     $('#'+raceSource.attributes.description+"AbilityScoreBonusSelection").prop('disabled',false);
     //debug Select race with dropdown, change selection, then select other race with dropdown (new dropdown doesn't reflect existing bonus)
 	},
-
-  toggleShowHide: function() {
-    toggleAllExcept("#raceSelectContainer",".nocollapse",this.collapsed);
-     if (this.collapsed == true) {
-      this.collapsed = false;
-      console.log(this.$el);
-      this.$el.find('.collapse').html(Mustache.to_html(templates.CollapseOpen));
-     }
-     else if (this.collapsed == false) {
-      this.collapsed = true;
-      this.$el.find('.collapse').html(Mustache.to_html(templates.CollapseClosed));
-     };
-  }
 
 })

@@ -1,11 +1,18 @@
+
+/*
 div {
 	border-style:solid;
 	border-width:1px;
 	margin:2px;
 }
+*/
+button {
+	margin-left:5px;
+}
 
-span.collapse {
-	font-weight:bold;
+.panel .panel {
+	margin-left:10px;
+	margin-right:10px;
 }
 
 div .title {

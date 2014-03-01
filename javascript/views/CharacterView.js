@@ -6,6 +6,8 @@ var CharacterView = Backbone.View.extend({
 
 	id: "characterView",
 
+	className: "panel-group",
+
 	template: templates.CharacterView,
 
 	initialize: function(options) {
@@ -31,7 +33,7 @@ var CharacterView = Backbone.View.extend({
 		//display debug area
 		var debugView = new DebugView({model:this.model,vent:vent});
 		this.$el.append(debugView.el)
-		$('body').append(this.$el);
+		$('body .container').append(this.$el);
     
 		//select all on click name input
     $("#characterName input").on("click", function() {
@@ -43,7 +45,7 @@ var CharacterView = Backbone.View.extend({
 		if (raceSources.length > 0) {
 			$('input[name="race"][value="'+raceSources[0].attributes.description+'"]').prop('checked',true);
 			$('#'+raceSources[0].attributes.description+'AbilityScoreBonusSelection').prop('disabled',false);
-			$('#racePreview').text("Race: "+raceSources[0].attributes.description);
+			$('#racePreview a').text("Race: "+raceSources[0].attributes.description);
 		};
     return this;
 	},
@@ -90,3 +92,5 @@ var CharacterView = Backbone.View.extend({
 	}
 
 });
+
+//2DO: Add ability scores preview to ability score title container... and use the same logci ffor the race

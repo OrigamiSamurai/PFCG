@@ -1,34 +1,34 @@
 var templates = [];
 
-templates.CollapseClosed = [
-	"&nbsp;[+]&nbsp;"
-].join("");
-
-templates.CollapseOpen = [
-	"&nbsp;[-]&nbsp;"
-].join("");
-
-
 templates.AbilityScoresView = [
-	"<div id=\"abilityScoresTitle\" class=\"nocollapse title\">",	
-		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
-		"Ability Scores",
+	"<div id=\"abilityScoresTitle\" class=\"panel-heading\">",	
+		"<span class=\"panel-title\">",
+			"<a data-toggle='collapse' data-parent='#abilityScoresContainer' href='#abilityScoresBody'>",
+        "Ability Scores",
+      "</a>",
+		"</span>",
 	"</div>",
-	"<div id=\"abilityScoreRowsContainer\">",
-		"<table>",
-			"<th>Score</th>",
-			"<th>Value</th>",
-			"<th>Bonus</th>",
-			"<th>View</th>",
-			"<th>Base Score</th>",
-		"</table>",
-	"</div>",
-	"<div id=\"rollAbilityScoresContainer\">",
-		"Reroll: Take best <input type=\"number\" value=\"3\" max=\"{{rollXbestMax}}\" min=\"{{rollXbestMin}}\" id=\"rollXbest\"></input> ",
-		"of <input type=\"number\" value=\"4\" max=\"{{rollofYMax}}\" min=\"{{rollofYMin}}\" id=\"rollofY\"></input>",
-		"d<input type=\"number\" value=\"6\" max=\"{{rolldZMax}}\" min=\"{{rolldZMin}}\" id=\"rolldZ\"></input> ",
-		"rerolling anything <input type=\"number\" value=\"1\" max=\"{{rollrerollingAMax}}\" min=\"{{rollrerollingAMin}}\" id=\"rollrerollingA\"></input> or below. ",
-		"<button id=\"rollAbilityScores\">Roll!</button>",
+	"<div id=\"abilityScoresBody\" class=\"panel-collapse collapse in\">",
+		"<div class=\"panel-body\">",
+			"<div id=\"abilityScoreRowsContainer\">",
+				"<table class=\"table\">",
+					"<thead>"		,
+						"<th>Score</th>",
+						"<th>Value</th>",
+						"<th>Bonus</th>",
+						"<th>View</th>",
+						"<th>Base Score</th>",
+					"</thead>",
+				"</table>",
+			"</div>",
+			"<div id=\"rollAbilityScoresContainer\">",
+				"Reroll: Take best <input type=\"number\" value=\"3\" max=\"{{rollXbestMax}}\" min=\"{{rollXbestMin}}\" id=\"rollXbest\"></input> ",
+				"of <input type=\"number\" value=\"4\" max=\"{{rollofYMax}}\" min=\"{{rollofYMin}}\" id=\"rollofY\"></input>",
+				"d<input type=\"number\" value=\"6\" max=\"{{rolldZMax}}\" min=\"{{rolldZMin}}\" id=\"rolldZ\"></input> ",
+				"rerolling anything <input type=\"number\" value=\"1\" max=\"{{rollrerollingAMax}}\" min=\"{{rollrerollingAMin}}\" id=\"rollrerollingA\"></input> or below. ",
+				"<button id=\"rollAbilityScores\">Roll!</button>",
+			"</div>",
+		"</div>",
 	"</div>"
 ].join("");
 
@@ -45,10 +45,12 @@ templates.AbilityScoreBonusValueView = [
 ].join("");
 
 templates.CharacterCreateView = [
-	"New Character Name: ",
-	"<input id=\"characterNewName\"></input>",
-	"<button id=\"createCharacter\">Create Character</button>",
-	"<button id=\"cancelCreateCharacter\">Cancel</button>"
+	"<div id=\"existingCharacterContainer\" class=\"panel-body\">",
+		"New Character Name: ",
+		"<input id=\"characterNewName\"></input>",
+		"<button id=\"createCharacter\">Create Character</button>",
+		"<button id=\"cancelCreateCharacter\">Cancel</button>",
+	"</div>"
 ].join("");
 
 templates.CharacterSelectOptionView = [
@@ -56,24 +58,32 @@ templates.CharacterSelectOptionView = [
 ].join("");
 
 templates.CharacterSelectExistingView = [
-	"<div id=\"existingCharacterContainer\">Select Character: ",
+	"<div id=\"existingCharacterContainer\" class=\"panel-body\">",
+		"Existing: ",
 		"<select id=\"character\"></select>",
-		"<button id=\"selectCharacter\">Select Character</button>",
-		"<button id=\"cancelSelectExistingCharacter\">Cancel</button>",
+		"<button type=\"button\" id=\"selectCharacter\" class=\"btn btn-sm btn-default\">Select Character</button>",
+		"<button type=\"button\" id=\"cancelSelectExistingCharacter\" class=\"btn btn-sm btn-default\">Cancel</button>",
 	"</div>"
 ].join("");
 
 templates.CharacterSelectView = [
-	"Choose a character:",
-	"<button id=\"createNewCharacter\">Create New</button>",
-	"<button id=\"selectExistingCharacter\">Select Existing</button>",
-	"<button id=\"changeCharacter\">Change Character</button>"
+	"<div class=\"panel-body\">",
+		"Choose a character:",
+		"<button type=\"button\" id=\"createNewCharacter\" class=\"btn btn-sm btn-default\">Create New</button>",
+		"<button type=\"button\" id=\"selectExistingCharacter\" class=\"btn btn-sm btn-default\">Select Existing</button>",
+		"<button type=\"button\" id=\"changeCharacter\" class=\"btn btn-sm btn-default\">Change Character</button>",
+	"</div>"
 ].join("");
 
 templates.CharacterView = [
-	"Name: <span id=\"characterName\">",
-	"<input type=\"text\" value=\"{{name}}\"></input>",
-	"</span>"
+	"<div id=\"nameContainer\" class=\"panel panel-default\">",
+		"<div class=\"panel-body\">",
+			"Name: ",
+			"<span id=\"characterName\">",
+				"<input type=\"text\" value=\"{{name}}\" size=\"30\"></input>",
+			"</span>",
+		"</div>",
+	"</div>"
 ].join("");
 
 templates.ChooseSource = [
@@ -127,34 +137,51 @@ templates.CreateSourceView = [
 ].join("");
 
 templates.DebugView = [
-	"<div id=\"debugTitle\" class=\"nocollapse title\">",	
-		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
-		"Debug Bar - Use at your own risk !",
+	"<div id=\"debugTitle\" class=\"panel-heading\">",	
+		"<span class=\"panel-title\">",
+			"<a data-toggle='collapse' data-parent='#debugContainer' href='#debugBody'>",
+      	"Debug: Use at your own risk",
+      "</a>",
+		"</span>",
 	"</div>",
-	"<div id=\"debugStatsContainer\">",
-		"Stats",
-		"<table>",
-			"<th>Name</th>",
-			"<th>Value</th>",
-			"<th>Total Value</th>",
-			"<th>Description</th>",
-			"<th>Level Gained</th>",
-			"<th>Source</th>",
-			"<th>Log</th>",
-			"<th>Delete</th>",
-		"</table>",
-		"<button id=\"addStat\">Add Stat</button>",
-	"</div>",
-	"<div id=\"debugSourcesContainer\">",
-		"Sources",
-		"<table>",
-			"<th>Name</th>",
-			"<th>Description</th>",
-			"<th>Level Gained</th>",
-			"<th>Log</th>",
-			"<th>Delete</th>",
-		"</table>",
-		"<button id=\"addSource\">Add Source</button>",
+	"<div id=\"debugBody\" class=\"panel-collapse collapse\">",
+		"<div class=\"panel-body\">",
+			"<ul class=\"list-group\">",	
+				"<li class=\"list-group-item\">",
+					"<div id=\"debugStatsContainer\">",
+						"Stats",
+						"<table class=\"table\">",
+							"<thead>",
+								"<th>Name</th>",
+								"<th>Value</th>",
+								"<th>Total Value</th>",
+								"<th>Description</th>",
+								"<th>Level Gained</th>",
+								"<th>Source</th>",
+								"<th>Log</th>",
+								"<th>Delete</th>",
+							"</thead>",
+						"</table>",
+						"<button id=\"addStat\">Add Stat</button>",
+					"</div>",
+				"</li>",
+				"<li class=\"list-group-item\">",
+					"<div id=\"debugSourcesContainer\">",
+						"Sources",
+						"<table class=\"table\">",
+							"<thead>",
+								"<th>Name</th>",
+								"<th>Description</th>",
+								"<th>Level Gained</th>",
+								"<th>Log</th>",
+								"<th>Delete</th>",
+							"</thead>",
+						"</table>",
+						"<button id=\"addSource\">Add Source</button>",
+					"</div>",
+				"</li>",
+			"</ul>",
+		"</div>",
 	"</div>"
 ].join("");
 
@@ -201,11 +228,23 @@ templates.RaceOptionView = [
 ].join("");
 
 templates.RaceSelectView = [
-	"<div id=\"racesTitle\" class=\"nocollapse title\">",	
-		"<span class=\"collapse\">"+templates.CollapseOpen+"</span>",
-		"<span id=\"racePreview\">Race: </span>",
+	"<div id=\"racesTitle\" class=\"panel-heading\">",
+		"<span id=\"racePreview\" class=\"panel-title\">",
+			"<a data-toggle='collapse' data-parent='#racesContainer' href='#racesBody'>",
+				"Race: ",
+			"</a>",
+		"</span>",
 	"</div>",
-	"<table id=\"racesContainer\"></table>"
+	"<div id=\"racesBody\" class=\"panel-collapse collapse in\">",
+		"<div class=\"panel-body\">",
+			"<table id=\"racesContainer\" class=\"table\">",
+				"<thead>",
+					"<th>Race</th>",
+					"<th>Bonuses</th>",
+				"</thead>",
+			"</table>",
+		"</div>",	
+	"</div>"
 ].join("");
 
 templates.StatValueView = [
