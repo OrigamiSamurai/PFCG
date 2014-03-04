@@ -6,7 +6,7 @@ div {
 	margin:2px;
 }
 */
-button {
+.btn-group {
 	margin-left:5px;
 }
 
@@ -34,14 +34,6 @@ div.toolTipContainer {
 
 button#changeCharacter, .racialAbilityBonusSelection {
 	display:none;
-}
-
-table, th, td {
-	border: 1px solid black;
-}
-
-table {
-	width:100%;
 }
 
 .title {

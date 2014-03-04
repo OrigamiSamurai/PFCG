@@ -38,7 +38,6 @@ var RaceOptionView = Backbone.View.extend({
 				this.$el.find('.racialAbilityBonusSelection').show().prop('disabled',true);
 				break;
 		}
-		//2DO: add in race description as part of template variables
     return this;
 	},
 

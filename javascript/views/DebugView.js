@@ -57,5 +57,3 @@ var DebugView = Backbone.View.extend({
 	}
 
 });
-
-//2DO: update UI layer with Bootstrap

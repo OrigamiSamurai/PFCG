@@ -40,4 +40,6 @@ var characterSelectView = new CharacterSelectView({collection: characterCollecti
 //Render the character view
 characterSelectView.render();
 
-//2DO: add ability to change random ability bonus from race
+//2DO: add page level navbar
+//2DO: start development on paper token creator
+//2DO: start token image library

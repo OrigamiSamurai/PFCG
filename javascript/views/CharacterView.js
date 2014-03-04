@@ -1,7 +1,7 @@
 var CharacterView = Backbone.View.extend({
 	
 	events: {
-		"keyup #characterName input":"updateCharacterName"
+		"keyup #characterName":"updateCharacterName"
 	},
 
 	id: "characterView",
@@ -88,7 +88,7 @@ var CharacterView = Backbone.View.extend({
 		if (keyUp.keyCode == 13) {
 			$('#characterName input').blur();	
 		}
-		this.model.set({name:$('#characterName input').val()});
+		this.model.set({name:$('#characterName').val()});
 	}
 
 });
