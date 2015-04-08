@@ -38,7 +38,7 @@ templates.AbilityScoreView = [
 	"<td>{{name}}</td>",
 	"<td class=\"abilityScoreTotalValue\">{{totalValue}}</td>",
 	"<td class=\"abilityScoreBonusValue\"></td>",
-	"<td><img src=\"images/magnifying_glass.jpg\" alt=\"magnifying glass\"/></td>",
+	"<td><img src=\"/images/magnifying_glass.jpg\" alt=\"magnifying glass\"/></td>",
 	"<td><input class=\"newStatValue form-control\" type=\"number\" min=\"{{minBaseStat}}\" max=\"{{maxBaseStat}}\" value=\"{{value}}\"></td>"
 ].join("");
 
@@ -272,7 +272,7 @@ templates.RaceSelectView = [
 
 templates.StatValueView = [
 	"{{totalValue}} ",
-	"<img src=\"images/magnifying_glass.jpg\" alt=\"magnifying glass\"/> ",
+	"<img src=\"/images/magnifying_glass.jpg\" alt=\"magnifying glass\"/> ",
 	"Base: <input class=\"newStatValue\" type=\"text\" value=\"{{value}}\" size=\"2\" maxlength=\"2\">"
 ].join("");
 
