@@ -23,7 +23,7 @@ var RaceOptionView = Backbone.View.extend({
 			simpleClone(
 				this.model.attributes, 
 				{
-					raceDescription:raceDescriptions[races.indexOf(this.model.attributes.description)],
+					raceAbilityScoreBonusDescription:raceAbilityScoreBonusDescriptions[races.indexOf(this.model.attributes.description)],
 				}
 			)
 		));

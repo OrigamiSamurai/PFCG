@@ -1,10 +1,13 @@
+// helper function that defines a new expression in jQuery to check if an element has focus
 jQuery.expr[':'].focus = function( elem ) {
   return elem === document.activeElement && ( elem.type || elem.href );
 };
 
+
+// create base options for standard ability scores, race names, and race ability score bonus descriptions
 var abilityScoreNames = ["Strength","Dexterity","Constitution","Intelligence","Wisdom","Charisma"];
 var races = ["Human","Dwarf","Elf","Gnome","Half-Elf","Half-Orc","Halfling"];
-var raceDescriptions = [
+var raceAbilityScoreBonusDescriptions = [
   "Select an ability score (+2): ",
   "+2 Constitution, +2 Wisdom, -2 Charisma",
   "+2 Dexterity, +2 Intelligence, -2 Constitution",

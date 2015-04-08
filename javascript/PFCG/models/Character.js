@@ -12,9 +12,6 @@ var Character = Backbone.Model.extend({
 		);
 	  
 	  this.attributes.stats = new StatCollection();
-
-	  //2d): DELETE THIS
-		//var baseStats = new StatCollection();
 	  
 		for (var i=0;i<abilityScoreNames.length;i++){
 			this.attributes.stats.add(new Stat({
@@ -152,6 +149,5 @@ var Character = Backbone.Model.extend({
 	  this.attributes.stats.bind('remove',this.attributes.stats.refreshTotalValues);
 	  this.attributes.stats.bind('change:value',this.attributes.stats.refreshTotalValues);
 	  this.attributes.sources.bind('destroy', _.bind(this.attributes.stats.destroyFromSource,this.attributes.stats));
-	  //this.attributes.sources.bind('remove',this.attributes.stats.destroyFromSource);
 	}
 });
